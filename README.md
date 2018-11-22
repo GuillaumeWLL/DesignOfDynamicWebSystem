@@ -1,10 +1,17 @@
 # 2018-project-pjg
-This Web-Application has been created by Pierre-Jean Berthelon and Guillaume Wallerich, students at Lulea Tekniska Universitet for the lecture Design of Dynamic Web System.
-The web-application has been developped during the Fall Semester 2018 - LP2 (6th november --> 18th december)
-The aim of the project is to create a web-application where kids can learn to code with predetermined functions. You can see what the function is doing thanks to a robot which will perform the fucntion. For example the function turnRight() will move the robot to the right.
 
-Progression: Just the beginning
+Server application for the PJG-Project
+Author : Guillaume Wallerich
+Date : 11/01/2018
 
-Language used: don't know yet but certainly a front-end framework and node.js on the back-end.
+This server application has been built for the PJG-Project during the Design of Dynamic Websystem lectures provided in Lulea Tekniska Universitet during LP2, fall 2018.
+This app has the aim to connect to a front-end page and realise the connection between the view and the database. It should also organize the different routes for the web application
 
-This project comes from the lecture Design of Dynamic Web System. We have to create a web app to be graded ^^
+update 11/22/2018
+you can log in, sign in and access the home page
+
+How to start your Server
+-> get all of the file in your computer in one directory
+-> in the terminal, go to that directory
+-> install all of the frameworks and middlewares needed for that project thanks to the package.json file ( npm install )
+-> start your server with node server.js
