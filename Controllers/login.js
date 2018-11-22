@@ -1,0 +1,50 @@
+//----------------------------REQUIREMENTS--------------------------------------
+
+var express = require( 'express' ) ;
+var mysql = require( 'mysql' ) ;
+var myConnection = require( 'express-myconnection' ) ;
+var config = require( '../config' ) ;
+var bodyParser = require ( 'body-parser' ) ;
+var router = express.Router() ;
+var md5 = require( 'md5' ) ;
+
+//---------------------------USE MIDDLEWARE-------------------------------------
+
+router.use( bodyParser.urlencoded( { extended : true } ) ) ;
+router.use( bodyParser.json() ) ;
+router.use( bodyParser.urlencoded( { 'extended' : 'true' } ) ) ;
+router.use( myConnection( mysql , config.database , 'request') ) ;
+
+//---------------------------------GET RESPONSE---------------------------------
+
+router.get( '/' , ( req , res ) => {
+  req.getConnection( ( error , connection ) => {
+    if( !error ) {
+      connection.query( 'SELECT * FROM Users', ( error , result ) => {
+        res.json( result ) ;
+      } ) ;
+    }
+    else {
+        res.json( error.message ) ;
+    }
+  } ) ;
+} ) ;
+
+//--------------POST RESPONSE - FIND IF THE USER IS IN THE DATABASE-------------
+
+router.post( '/' , ( req , res  ) => { //when a post request fires
+  req.getConnection( ( error , conn ) => { //connection to the database
+    conn.query( 'SELECT user_id FROM Users WHERE user_mail = ? AND user_password = ?' , [ req.body.mail , md5( req.body.password ) ] , ( error , result ) => { // if we find the mail and the password in the databse then we log our user
+      if( !error ) {
+        conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) => {
+          res.json( resul ) ;
+        }) //set the user status to 1
+      }
+      else {
+        res.json( error.message ) ; //send the error message
+      }
+    } );
+  } ) ;
+} ) ;
+
+module.exports = router ;

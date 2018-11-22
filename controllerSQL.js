@@ -1,63 +1,22 @@
 var mysql = require( 'mysql' ) ;
+var config = require( './config' ) ;
+var myConnection = require( 'express-myconnection' ) ;
 var express = require( 'express' ) ;
 var app = express() ;
-var mysqlConnection = mysql.createConnection( {
-  host :'localhost' ,
-  user : 'root' ,
-  password : 'root' ,
-  database : 'Website' ,
-  port : '8889'
-}) ;
-
-
-
-/*--------------------FUNCTION TO CONNECT TO THE database----------------*/
-
-function connection()
-{
-  mysqlConnection.connect( ( err ) => // we connect to the database
-  {
-    if ( err ) // if an error occurs we print the message error and close the Connection
-    {
-      console.log( 'Error login DB : ' + err.message ) ;
-      endOfConnection() ;
-      return ;
-    }
-    console.log( 'Connection established' ) ;
-  }) ; //end of connect()
-} ; //end of function connection()
-
-/*--------------------FUNCTION TO DISCONNECT FROM THE DB----------------*/
-
- function endOfConnection( error )
-{
-  if(error)
-  {
-    console.log( error.message)
-  }
-  else {
-    mysqlConnection.end( ( error ) =>
-    {
-      if( error ) {
-        console.log( error.message ) ;
-      }
-      else {
-        console.log( "switching off" ) ;
-      }
-    })  ;
-  }
+var dbOptions = {
+  host : config.database.host ,
+  user : config.database.user ,
+  password : config.database.password ,
+  port : config.database.port ,
+  database : config.database.database
 }
-/*--------------------FUNCTION TO GET THE COUNT RESPONSE ----------------*/
 
-function getTheCountResponse( stringLine ) // function to get just the number of the count function result
-{
-  var counts ;
- module.exports.counts = JSON.stringify( stringLine ).substr( 12 , 1 )  ; /*string the result, keep the 12th character of the string (number return by the function COUNT())*/
-}
+app.use( myConnection( mysql , dbOptions , 'request' ) ) ;
+
 
 /*--------------------FUNCTION TO QUERY THE DB // level by difficulty----------------*/
 
-function getLevelByDifficulty( id_difficulty )
+function getLevelByDifficulty( id_difficulty , callback )
 {
   var rep ;
   mysqlConnection.query('SELECT COUNT(?) FROM Levels WHERE Difficulty_ID = ?', [ id_difficulty , id_difficulty ] , ( error , result )  => {
@@ -190,11 +149,9 @@ function isInTheDB( user_mail , user_password , callback )
 }
 
 
-connection() ;
-
 /*EXPORTATION OF THE FUNCTION DEFINED BEFORE*/
 module.exports = {
-  mysqlConnection : connection, //you can call the fucntion con() with the name mysqlConnectio() in the server.js file
+  /*mysqlConnection : connection, //you can call the fucntion con() with the name mysqlConnectio() in the server.js file
   endOfConnection : endOfConnection, //function that ends the connection to the DB*/
   getLevelByDifficulty : getLevelByDifficulty,
   getAllLevel : getAllLevel,
