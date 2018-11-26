@@ -7,6 +7,8 @@ var config = require( '../config' ) ;
 var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var md5 = require( 'md5' ) ;
+var cors = require( 'cors' );
+router.use(cors());
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 

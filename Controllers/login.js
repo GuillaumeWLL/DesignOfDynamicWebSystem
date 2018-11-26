@@ -7,6 +7,8 @@ var config = require( '../config' ) ;
 var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var md5 = require( 'md5' ) ;
+var cors = require( 'cors' );
+router.use(cors());
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
@@ -21,11 +23,11 @@ router.get( '/' , ( req , res ) => {
   req.getConnection( ( error , connection ) => {
     if( !error ) {
       connection.query( 'SELECT * FROM Users', ( error , result ) => {
-        res.json( result ) ;
+        res.json( JSON.stringify( result ) ) ;
       } ) ;
     }
     else {
-        res.json( error.message ) ;
+        res.json( JSON.stringify( error.message ) ) ;
     }
   } ) ;
 } ) ;
@@ -34,14 +36,14 @@ router.get( '/' , ( req , res ) => {
 
 router.post( '/' , ( req , res  ) => { //when a post request fires
   req.getConnection( ( error , conn ) => { //connection to the database
-    conn.query( 'SELECT user_id FROM Users WHERE user_mail = ? AND user_password = ?' , [ req.body.mail , md5( req.body.password ) ] , ( error , result ) => { // if we find the mail and the password in the databse then we log our user
+    conn.query( 'SELECT user_id FROM Users WHERE user_mail = ? AND user_password = ?' , [ req.body.mail , /*md5(*/ req.body.password /*)*/ ] , ( error , result ) => { // if we find the mail and the password in the databse then we log our user
       if( !error ) {
         conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) => {
-          res.json( resul ) ;
+          res.json( JSON.stringify( resul ) ) ;
         }) //set the user status to 1
       }
       else {
-        res.json( error.message ) ; //send the error message
+        res.json( JSON.stringify( error.message ) ) ; //send the error message
       }
     } );
   } ) ;
