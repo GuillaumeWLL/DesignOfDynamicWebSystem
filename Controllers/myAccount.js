@@ -6,6 +6,8 @@ var myConnection = require( 'express-myconnection' ) ;
 var config = require( '../config' ) ;
 var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
+var cors = require( 'cors' );
+router.use(cors());
 
 
 //---------------------------USE MIDDLEWARE-------------------------------------
@@ -18,7 +20,11 @@ router.use( myConnection( mysql , config.database , 'request') ) ;
 //-----------------------------GET METHOD---------------------------------------
 
 router.get( '/' , ( req , res ) => {
-  res.send("coucou") ;
+
 } ) ;
 
-module.exports = router ; 
+router.put( '/' , ( req , res ) => { //changes in the database
+
+})
+
+module.exports = router ;

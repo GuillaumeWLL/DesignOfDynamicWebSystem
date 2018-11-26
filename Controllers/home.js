@@ -5,6 +5,8 @@ var myConnection = require( 'express-myconnection' ) ;
 var config = require( '../config' ) ;
 var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
+var cors = require( 'cors' );
+router.use(cors());
 
 
 //---------------------------USE MIDDLEWARE-------------------------------------
