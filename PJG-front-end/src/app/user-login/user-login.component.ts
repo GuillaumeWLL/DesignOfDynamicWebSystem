@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-user-login',
@@ -12,21 +13,29 @@ export class UserLoginComponent implements OnInit {
 
   hide = true;
   authStatus: boolean;
+  authForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router ) { }
+  username = new FormControl('', [Validators.required]);
+
+  password = new FormControl('', [Validators.required]);
+
+
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.authStatus = this.authService.isAuth;
-  }
- /* onLogIn() {
-    this.authService.logIn().then(
-      () => {
-        console.log('Connexion reussie')
-        this.authStatus = this.authService.isAuth;
-        this.router.navigate(['/']);
+    this.authForm = this.formBuilder.group( {
+        username: ['', [Validators.required]],
+        password: ['', [Validators.required]]
       }
     );
-  }*/
+  }
+  onLogIn() {
+    const formValue = this.authForm.value;
+    this.authService.logIn(
+      formValue['username'],
+      formValue['password']);
+  }
   onLogOut() {
     this.authService.logOut();
     console.log( 'déconnexion reussie');

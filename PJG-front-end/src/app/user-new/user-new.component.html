@@ -1,28 +1,38 @@
 <div class="basic-container">
-  <mat-card class="basic-card">
-            <mat-form-field>
-             <input matInput placeholder="Enter your email" [formControl]="email" required>
-             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <p> </p>
-            <mat-form-field>
-              <input matInput placeholder="Username" required>
-            </mat-form-field>
-            <p></p>
-            <mat-form-field>
-              <input matInput placeholder="Enter your password" id = 'password' [type]="hide ? 'password' : 'text'" required>
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
-            <p> </p>
-            <mat-form-field>
-              <input matInput placeholder="Comfirm your password"
-                     id='confirmPassword'
-                     [type]="hide ? 'password' : 'text'"
-                     [formControl]="" required>
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
-      <p></p>
-      <button mat-raised-button color="primary">Log in</button>
+  <mat-card class="basic-card">`
+    <form class="form-horizontal" [formGroup]="userForm">
+    <mat-form-field>
+     <input matInput placeholder="Enter your email" formControlName="email" required>
+    </mat-form-field>
+    <p> </p>
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username" required>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" id = 'password' [type]="hide ? 'password' : 'text'" formControlName="password" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <p> </p>
+    <mat-form-field>
+      <input matInput placeholder="Comfirm your password"
+             id='confirmPassword'
+             [type]="hide ? 'password' : 'text'"
+             formControlName="confirmPassword" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field>
+      <mat-select placeholder="desired difficulty" formControlName="modeControl" required>
+        <mat-option *ngFor="let mode of modes" [value]="mode">
+          {{mode.name}}
+        </mat-option>
+      </mat-select>
+      <mat-hint>{{ getRules() }}</mat-hint>
+    </mat-form-field>
+    <p></p>
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)=onSignIn()>Register</button>
+    </form>
   </mat-card>
 </div>
 

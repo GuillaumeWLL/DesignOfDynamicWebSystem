@@ -1,0 +1,16 @@
+<mat-drawer-container class="basic-container">
+  <mat-drawer mode="side" opened>
+    <a mat-button routerLinkActive="active" routerLink="/profile/edit">Edit</a>
+    <p></p>
+    <a mat-button routerLinkActive="active" routerLink="/profile/progression">Progression</a>
+    <p></p>
+  </mat-drawer>
+  <mat-drawer-content>
+    <h2>My profile :</h2>
+    <p></p>
+    <h4>Username: {{username}}</h4>
+    <h4>Email: {{email}}</h4>
+    <h4>Password: {{password}}</h4>
+  </mat-drawer-content>
+</mat-drawer-container>
+

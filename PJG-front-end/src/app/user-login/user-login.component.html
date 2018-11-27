@@ -1,19 +1,21 @@
 <div class="basic-container">
-  <mat-card class="login-card">
-    <mat-card-content>
-      <mat-form-field
-        [hideRequiredMarker]="false"
-        [floatLabel]="'auto'">
-        <input matInput placeholder="Username" required>
+  <mat-card class="basic-card">
+    <form class="form-horizontal" [formGroup]="authForm">
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
       </mat-form-field>
       <p>    </p>
       <mat-form-field>
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" >
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <p>    </p>
-      <button mat-raised-button color="primary">Log in</button>
-    </mat-card-content>
+      <button mat-raised-button color="primary" [disabled]="authForm.invalid" (click)=onLogIn()>Log in</button>
+      <p></p>
+      <p>Or</p>
+      <p></p>
+      <button mat-raised-button color="primary" routerLinkActive="active" routerLink="/new-user">Register</button>
+    </form>
  </mat-card>
 </div>
 
