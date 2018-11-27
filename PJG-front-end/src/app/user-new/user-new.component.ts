@@ -4,7 +4,12 @@ import { AbstractControl} from '@angular/forms';
 import {User} from '../models/user.model';
 import {Router} from '@angular/router';
 import {UserService} from '../services/user.service';
+import {RegisterService} from '../services/register.service';
 
+export interface Mode {
+  name: string;
+  rules: string;
+}
 
 @Component({
   selector: 'app-user-new',
@@ -14,64 +19,43 @@ import {UserService} from '../services/user.service';
 export class UserNewComponent implements OnInit {
 
   hide = true;
-  registrationFormGroup: FormGroup;
-  emailFormGroup: FormGroup;
-  passwordFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  email = new FormControl('', [Validators.required, Validators.email]);
+  userForm: FormGroup;
 
-  ngOnInit() {}
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' :
-        '';
-  }
+  modes: Mode[] = [
+    {name: 'Zen', rules: 'Zen rules' },
+    {name: 'Speed-run', rules: 'Speed-run rules' },
+    {name: 'Hardcore', rules: 'Hardcore rules' }
+  ];
 
-  getMatchErrorMessage() {
-    const userForm = this.emailFormGroup.value;
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder){}
 
-    if (userForm['password'] !== userForm['confirmPassword']){
-
-    }
-  }
-
-
-
-  /*constructor(private formBuilder: FormBuilder,
-              private userService: UserService,
-              private router: Router ) { }*/
-
-
-
-  /*initForm() {
+  ngOnInit() {
     this.userForm = this.formBuilder.group( {
-      firstName: ['', Validators.required],
-      lastName:['', Validators.required],
-      email:['', [Validators.required, Validators.email]],
-      drinkPreference:['', Validators.required],
-      hobbies: this.formBuilder.array( [])
-    });
-  }
-
-  onSubmitForm() {
-    const formValue = this.userForm.value;
-    const newUser = new User(
-      formValue['firstName'],
-      formValue['lastName'],
-      formValue['email'],
-      formValue['drinkPreference'],
-      formValue['hobbies'] ? formValue['hobbies'] : []
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPassword: [''],
+      modeControl: ['', [Validators.required]]
+      }, {validator: this.checkPasswords }
     );
-    this.userService.addUser(newUser);
-    this.router.navigate(['/users']);
   }
-
-  getHobbies() {
-    return this.userForm.get('hobbies') as FormArray;
+  getRules() {
+    const selectMode = this.userForm.value['modeControl'];
+    return selectMode.rules;
   }
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.confirmPassword.value;
 
-  onAddHobbie() {
-    const newHobbyControl = this.formBuilder.control('', Validators.required);
-    this.getHobbies().push(newHobbyControl);
-  }*/
+    return pass === confirmPass ? null : { notSame: true }
+  }
+  onSignIn() {
+    const formValue = this.userForm.value;
+    this.registerService.signIn(
+      formValue['username'],
+      formValue['email'],
+      formValue['password'],
+      2);
+
+  }
 }

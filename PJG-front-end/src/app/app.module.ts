@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,11 +22,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { ProfileProgressionComponent } from './profile/profile-progression/profile-progression.component';
+import { RegisterService } from './services/register.service';
+import { MatSelectModule } from '@angular/material/select';
 
 const appRoutes: Routes = [
   { path: 'auth', component: UserLoginComponent},
   { path: 'new-user', component: UserNewComponent},
-  { path: 'play', component: PlayComponent},
+  { path: 'play', canActivate:[AuthGuard], component: PlayComponent},
+  { path: 'profile', canActivate:[AuthGuard], component: ProfileComponent},
+  { path: 'profile/edit', canActivate:[AuthGuard], component: EditProfileComponent},
+  { path: 'profile/progression', canActivate:[AuthGuard], component: ProfileProgressionComponent},
+
+  { path: '', component: HomeComponent},
   //{ path: '**', redirectTo: '/not-found'}
   ];
 
@@ -35,11 +48,17 @@ const appRoutes: Routes = [
     AppComponent,
     PlayComponent,
     UserLoginComponent,
-    UserNewComponent
+    UserNewComponent,
+    ProfileComponent,
+    HomeComponent,
+    EditProfileComponent,
+    ProfileProgressionComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    MatGridListModule,
+    MatSidenavModule,
     MatInputModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -50,6 +69,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    MatSelectModule,
     MatCardModule,
     MatStepperModule,
     RouterModule.forRoot(appRoutes),
@@ -58,7 +78,8 @@ const appRoutes: Routes = [
   providers: [
     AuthGuard,
     AuthService,
-    UserService
+    UserService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })

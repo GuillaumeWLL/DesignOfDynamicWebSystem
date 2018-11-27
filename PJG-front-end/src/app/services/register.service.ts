@@ -1,41 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import {post} from 'selenium-webdriver/http';
+import {User} from '../models/user.model';
 import {Injectable} from '@angular/core';
 
 
 @Injectable()
 
-export class AuthService {
+export class RegisterService {
 
-  isAuth = false;
+  isAuth = true;
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient) {}
 
-  logIn(
+  signIn(
     username: string,
-    password: string) {
+    email: string,
+    password: string,
+    level: number) {
 
     const user = {
       username,
-      password
-    }
+      email,
+      password,
+      level
+    };
+    console.log( user );
     this.httpClient
-      .post('http://130.240.200.91:8080/login', user )
+      .post('http://130.240.200.91:8080/signin', user )
       .subscribe(
         () => {
           console.log('Ca fonctionne !! ');
-          this.isAuth = true;
-
         },
         (error) => {
           console.log('ca marche pas');
         }
       );
+
     console.log('ok ca passe la');
     console.log( username );
+    console.log( email );
     console.log( password );
-  }
-  logOut() {
-    this.isAuth = false;
+    console.log( level );
   }
 }

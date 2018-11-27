@@ -1,13 +1,13 @@
-<mat-toolbar>
+
+<mat-toolbar class="toolbar">
   <mat-toolbar-row>
     <a mat-button routerLinkActive="active" routerLink="/">Home</a>
     <a mat-button routerLinkActive="active" routerLink="/play">Play</a>
 
     <span class="example-spacer"></span>
     <a mat-button routerLinkActive="active" routerLink="/auth">Login</a>
-    <a mat-button routerLinkActive="active" routerLink="/new-user">Register</a>
+    <a mat-button routerLinkActive="active" routerLink="/profile" *ngIf="isAuth">Profile</a>
   </mat-toolbar-row>
 </mat-toolbar>
-
 <router-outlet></router-outlet>
 

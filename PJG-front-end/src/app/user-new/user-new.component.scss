@@ -1,9 +1,14 @@
-.basic-container {
-  text-align: center;
+.center{
+  width: 80%;
+  max-width: 600px;
+  max-height: 500px;
+  margin: 10px auto;
 }
 
-.basic-container > * {
-  width: 100%;
+.basic-container {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .example-right-align {
