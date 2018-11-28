@@ -1,10 +1,11 @@
 var config = {
   database : {
-    host :'localhost' ,
-    user : 'userWebsite' ,
-    password : 'SU1OsNHuRRAGg9TO' ,
+    host :'127.0.0.1',
+    user : 'root' ,
+    password : '' ,
     database : 'Website' ,
-    port : '8889'
+    port : '3306',
+    socketPath: '/var/run/mysqld/mysqld.sock'
   }
 }
 

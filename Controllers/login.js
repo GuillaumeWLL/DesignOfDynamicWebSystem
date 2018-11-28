@@ -36,7 +36,7 @@ router.get( '/' , ( req , res ) => {
 
 router.post( '/' , ( req , res  ) => { //when a post request fires
   req.getConnection( ( error , conn ) => { //connection to the database
-    conn.query( 'SELECT user_id FROM Users WHERE user_mail = ? AND user_password = ?' , [ req.body.mail , /*md5(*/ req.body.password /*)*/ ] , ( error , result ) => { // if we find the mail and the password in the databse then we log our user
+    conn.query( 'SELECT user_id FROM Users WHERE user_name = ? AND user_password = ?' , [ req.body.username , md5( req.body.password ) ] , ( error , result ) => { // if we find the mail and the password in the databse then we log our user
       if( !error ) {
         conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) => {
           res.json( JSON.stringify( resul ) ) ;

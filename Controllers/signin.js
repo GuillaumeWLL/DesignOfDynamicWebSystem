@@ -22,7 +22,7 @@ router.use( myConnection( mysql , config.database , 'request') ) ;
 
 router.post( '/' , ( req , res ) => { //trying to create a new user
   req.getConnection( ( error , connection ) => { //create a new user in the database
-      connection.query( 'INSERT INTO Users (user_name , user_mail , user_password , user_level) VALUES (? , ? , ? , ?)' , [ req.body.name , req.body.mail , md5( req.body.password ) , req.body.level ] , ( error , result ) => {
+      connection.query( 'INSERT INTO Users (user_name , user_mail , user_password , user_level) VALUES (? , ? , ? , ?)' , [ req.body.username , req.body.email , md5( req.body.password ) , req.body.level ] , ( error , result ) => {
         if( !error ) {
           res.json( result.affectedRows ) ;
         }
