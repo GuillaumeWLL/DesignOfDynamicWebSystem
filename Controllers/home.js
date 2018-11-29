@@ -6,14 +6,14 @@ var config = require( '../config' ) ;
 var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var cors = require( 'cors' );
-router.use(cors());
+
 
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
 router.use( bodyParser.urlencoded( { extended : true } ) ) ;
 router.use( bodyParser.json() ) ;
-router.use( bodyParser.urlencoded( { 'extended' : 'true' } ) ) ;
+router.use(cors());
 
 //-----------------------------GET METHOD---------------------------------------
 
