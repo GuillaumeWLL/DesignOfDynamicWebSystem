@@ -13,14 +13,13 @@ router.use(cors());
 
 router.use( bodyParser.urlencoded( { extended : true } ) ) ;
 router.use( bodyParser.json() ) ;
-router.use( bodyParser.urlencoded( { 'extended' : 'true' } ) ) ;
 router.use( myConnection( mysql , config.database , 'request') ) ;
 
 //---------------------------------GET RESPONSE---------------------------------
 router.post( '/' , ( req , res ) => {
   req.getConnection( ( error , connection ) => {
     if( !error ) {
-      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.name ] , ( error , result ) => {
+      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.username ] , ( error , result ) => {
         res.json( JSON.stringify( result ) ) ;
       } ) ;
     }
