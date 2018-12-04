@@ -1,5 +1,9 @@
 import {Component, Injectable, OnInit} from '@angular/core';
+import { FooterComponent } from './core/footer/footer.component';
+import { HeaderComponent } from './core/header/header.component';
 import {AuthService} from './services/auth.service';
+import {User} from './models/user.model';
+import {Subscription} from 'rxjs';
 
 @Injectable()
 
@@ -10,12 +14,6 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent {
 
-  isAuth: boolean;
 
-  constructor( private authService: AuthService) {
-    this.isAuth = authService.isAuth;
-    console.log('ca passe ici aussi');
-    console.log(this.isAuth);
-  }
 }
 
