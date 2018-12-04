@@ -8,15 +8,16 @@ var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var md5 = require( 'md5' ) ;
 var cors = require( 'cors' );
-router.use(cors());
+var cookieParser = require( 'cookie-parser' ) ;
+
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
 router.use( bodyParser.urlencoded( { extended : true } ) ) ;
 router.use( bodyParser.json() ) ;
-router.use( bodyParser.urlencoded( { 'extended' : 'true' } ) ) ;
 router.use( myConnection( mysql , config.database , 'request') ) ;
-
+router.use(cors());
+router.use( cookieParser() );
 
 //------------------POST RESPONSE - ADDING A USER IN THE DATABASE---------------
 
