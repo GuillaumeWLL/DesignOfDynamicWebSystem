@@ -1,13 +1,3 @@
-
-<mat-toolbar class="toolbar">
-  <mat-toolbar-row>
-    <a mat-button routerLinkActive="active" routerLink="/">Home</a>
-    <a mat-button routerLinkActive="active" routerLink="/play">Play</a>
-
-    <span class="example-spacer"></span>
-    <a mat-button routerLinkActive="active" routerLink="/auth">Login</a>
-    <a mat-button routerLinkActive="active" routerLink="/profile" *ngIf="isAuth">Profile</a>
-  </mat-toolbar-row>
-</mat-toolbar>
+<app-header></app-header>
 <router-outlet></router-outlet>
-
+<app-footer></app-footer>

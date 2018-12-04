@@ -1,3 +1,55 @@
-<p>
-  edit-profile works!
-</p>
+
+
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="basic-container">
+      <form class="form-horizontal" [formGroup]="userForm">
+        <mat-form-field>
+          <input matInput placeholder="Enter your email"
+                 formControlName="email">
+        </mat-form-field>
+        <p> </p>
+        <mat-form-field>
+          <input matInput placeholder="Username"
+                 formControlName="username">
+        </mat-form-field>
+        <p></p>
+        <button mat-raised-button color="primary" (click)=togglePassword() > change Password </button>
+
+        <div *ngIf=changePassword >
+          <mat-form-field>
+            <input matInput placeholder="Enter your old password"
+                   id = 'oldPassword'
+                   [type]="hide ? 'password' : 'text'"
+                   formControlName="oldPassword" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <p></p>
+          <mat-form-field>
+            <input matInput placeholder="Enter your new password"
+                   id = 'newPassword'
+                   [type]="hide ? 'password' : 'text'"
+                   formControlName="newPassword">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <p> </p>
+          <mat-form-field>
+            <input matInput placeholder="Confirm your new password"
+                   id='confirmNewPassword'
+                   [type]="hide ? 'password' : 'text'"
+                   formControlName="confirmNewPassword">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        <p></p>
+        <p></p>
+        <button mat-raised-button color="primary" (click)=onUpdate() [disabled]="this.changePassword && userForm['oldPassword']==='' ">Update</button>
+      </form>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+

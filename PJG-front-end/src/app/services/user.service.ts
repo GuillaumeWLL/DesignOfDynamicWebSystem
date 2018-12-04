@@ -7,13 +7,8 @@ export class UserService {
 
   userSubject = new Subject<User[]>();
 
-  emitUsers() {
-    this.userSubject.next(this.users.slice());
-  }
-
   addUser(user: User) {
     this.users.push(user);
-    this.emitUsers();
   }
 
 

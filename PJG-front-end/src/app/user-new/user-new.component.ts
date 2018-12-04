@@ -44,10 +44,10 @@ export class UserNewComponent implements OnInit {
     return selectMode.rules;
   }
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-    let pass = group.controls.password.value;
-    let confirmPass = group.controls.confirmPassword.value;
+    const pass = group.controls.password.value;
+    const confirmPass = group.controls.confirmPassword.value;
 
-    return pass === confirmPass ? null : { notSame: true }
+    return pass === confirmPass ? null : { notSame: true };
   }
   onSignIn() {
     const formValue = this.userForm.value;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class UserLoginComponent implements OnInit {
   password = new FormControl('', [Validators.required]);
 
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.authStatus = this.authService.isAuth;
@@ -34,11 +35,11 @@ export class UserLoginComponent implements OnInit {
     const formValue = this.authForm.value;
     this.authService.logIn(
       formValue['username'],
-      formValue['password']);
-  }
-  onLogOut() {
-    this.authService.logOut();
-    console.log( 'déconnexion reussie');
-    this.authStatus = this.authService.isAuth;
+      formValue['password']).then(
+        r => {
+          console.log(r);
+          this.router.navigate(['/']);
+        }
+    );
   }
 }

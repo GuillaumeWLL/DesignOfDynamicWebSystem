@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import {post} from 'selenium-webdriver/http';
 import {User} from '../models/user.model';
 import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
 
 
 @Injectable()
@@ -18,15 +19,8 @@ export class RegisterService {
     password: string,
     level: number) {
 
-    const user = {
-      username,
-      email,
-      password,
-      level
-    };
-    console.log( user );
     this.httpClient
-      .post('http://130.240.200.91:8080/signin', user )
+      .post(`${environment.api_url}/signin`, {username, email, password, level}  )
       .subscribe(
         () => {
           console.log('Ca fonctionne !! ');
