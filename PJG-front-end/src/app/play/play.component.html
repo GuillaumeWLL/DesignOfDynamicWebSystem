@@ -1,12 +1,9 @@
 <div class="basic-container">
-  <mat-grid-list cols="4" rowHeight="300px">
-    <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-      {{tile.text}}
-    </mat-grid-tile>
-  </mat-grid-list>
+  <mat-card>
+    <app-drag-drop></app-drag-drop>
+  </mat-card>
+  <mat-card>
+    <app-game></app-game>
+  </mat-card>
 </div>
 

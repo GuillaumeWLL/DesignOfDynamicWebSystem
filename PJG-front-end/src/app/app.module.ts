@@ -29,16 +29,24 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { ProfileProgressionComponent } from './profile/profile-progression/profile-progression.component';
 import { RegisterService } from './services/register.service';
 import { MatSelectModule } from '@angular/material/select';
+import { ApiService } from './services/api.service';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { DragDropComponent } from './play/drag-drop/drag-drop.component';
+import { GameComponent } from './play/game/game.component';
+import { MaterialModule } from './material-module';
+import { GameService } from './services/game.service';
 
 const appRoutes: Routes = [
   { path: 'auth', component: UserLoginComponent},
   { path: 'new-user', component: UserNewComponent},
-  { path: 'play', canActivate:[AuthGuard], component: PlayComponent},
-  { path: 'profile', canActivate:[AuthGuard], component: ProfileComponent},
-  { path: 'profile/edit', canActivate:[AuthGuard], component: EditProfileComponent},
-  { path: 'profile/progression', canActivate:[AuthGuard], component: ProfileProgressionComponent},
+  { path: 'play', canActivate: [AuthGuard], component: PlayComponent},
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
+  { path: 'profileEdit', canActivate: [AuthGuard], component: EditProfileComponent},
+  { path: 'profileProgression', canActivate: [AuthGuard], component: ProfileProgressionComponent},
 
-  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
   //{ path: '**', redirectTo: '/not-found'}
   ];
 
@@ -52,7 +60,12 @@ const appRoutes: Routes = [
     ProfileComponent,
     HomeComponent,
     EditProfileComponent,
-    ProfileProgressionComponent
+    ProfileProgressionComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    DragDropComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +80,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MaterialModule,
     MatMenuModule,
     MatIconModule,
     MatSelectModule,
@@ -79,8 +93,11 @@ const appRoutes: Routes = [
     AuthGuard,
     AuthService,
     UserService,
-    RegisterService
+    RegisterService,
+    ApiService,
+    GameService
   ],
+  entryComponents: [ DragDropComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
