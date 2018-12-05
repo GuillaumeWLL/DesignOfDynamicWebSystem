@@ -18,14 +18,19 @@ router.use(cors());
 router.use( cookieParser() );
 
 //---------------------------------GET RESPONSE---------------------------------
-router.post( '/' , ( req , res ) => {
-  req.getConnection( ( error , connection ) => {
-    if( !error ) {
-      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.name ] , ( error , result ) => {
-        res.json( JSON.stringify( result ) ) ;
+router.post( '/' , ( req , res ) =>
+{
+  req.getConnection( ( error , connection ) =>
+  {
+    if( !error )
+    {
+      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.name ] , ( error , result ) =>
+      {
+        res.status(202).json( JSON.stringify( result ) ) ;
       } ) ;
     }
-    else {
+    else
+    {
         res.json( JSON.stringify( error.message ) ) ;
     }
   } ) ;

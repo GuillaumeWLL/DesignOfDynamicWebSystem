@@ -17,7 +17,8 @@ router.use(cors());
 
 //-----------------------------GET METHOD---------------------------------------
 
-router.get( '/' , ( req , res ) => {
+router.get( '/' , ( req , res ) =>
+{
   res.send( "You know I feeling like home" ) ;
 })
 

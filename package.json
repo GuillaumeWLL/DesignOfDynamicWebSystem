@@ -11,7 +11,8 @@
     "md5": "^2.2.1",
     "method-override": "~3.0.0",
     "morgan": "~1.9.1",
-    "mysql": "~2.16.0"
+    "mysql": "~2.16.0",
+    "winston": "^3.1.0"
   },
   "main": "server.js",
   "author": "Guillaume Wallerich",

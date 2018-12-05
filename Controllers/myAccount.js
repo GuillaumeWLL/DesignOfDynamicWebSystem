@@ -25,7 +25,7 @@ router.get( '/' , ( req , res ) =>
   {
     if( !error )
     {
-      connection.query( 'Select * from Users where user_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
+      connection.query( 'Select count(*) from Historic where User_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
       {
         if( !err )
         {
@@ -45,17 +45,21 @@ router.get( '/' , ( req , res ) =>
 } ) ;
 //-----------------------------POST METHOD--------------------------------------
 
-router.put( '/edit' , ( req , res ) => { //changes in the database
-  req.getConnection( ( error , connection ) => {
-    if( !error ) {
+router.put( '/edit' , ( req , res ) =>
+{ //changes in the database
+  req.getConnection( ( error , connection ) =>
+  {
+    if( !error )
+    {
       connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , req.body.password , req.body.level , req.body.id ] , ( error , result ) => {
         res.json( JSON.stringify( result ) ) ;
       } ) ;
     }
-    else {
+    else
+    {
         res.json( JSON.stringify( error.message ) ) ;
     }
   } ) ;
-})
+} );
 
 module.exports = router ;
