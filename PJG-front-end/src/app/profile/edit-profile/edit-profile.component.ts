@@ -19,12 +19,9 @@ export class EditProfileComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) { }
 
   ngOnInit() {
-    this.test = { username: 'PJ', email: 'pj@gg.c', password: 'eee'};
-    /*this.apiService.getUser().then( (response) => {
+    this.apiService.getUser().then( (response) => {
       this.test = response;
-    });*/
-    // a uncomment qd server active
-    //this.apiService.getUser();
+    });
     this.userForm = this.formBuilder.group( {
         email: ['', [Validators.email]],
         username: ['', []],
@@ -35,12 +32,6 @@ export class EditProfileComponent implements OnInit {
     );
     this.changePassword = false;
   }
-
-  /*getCurrUserInfos() {
-    this.test = this.apiService.getUser().then( r => {
-      console.log(r);
-    });
-  }*/
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     const pass = group.controls.newPassword.value;

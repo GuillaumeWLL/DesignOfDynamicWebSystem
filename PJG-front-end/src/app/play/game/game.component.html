@@ -6,5 +6,5 @@
   <div class="row" *ngFor="let column of board; let i = index;">
     <div class="column" [ngStyle]="{'background-color': setColors(i,j)}" *ngFor="let row of column; let j = index"></div>
   </div>
-  <div class="start-button" [ngClass]="{'disable-clicks': gameStarted}" (click)="newGame(mode)">Run Code</div>
+  <div class="start-button" [ngClass]="{'disable-clicks': gameStarted}" (click)="newGame()">Run Code</div>
 </div>

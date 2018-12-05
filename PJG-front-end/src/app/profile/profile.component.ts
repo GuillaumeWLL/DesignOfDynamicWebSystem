@@ -14,12 +14,9 @@ export class ProfileComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.user = { username: 'PJ', email: 'pj@gg.c', password: 'eee'};
-   //this.apiService.getUser().then( (response) => {
-     //console.log(response);
-     //this.user = response;
-
-     //}
-   //);
-  }
+    this.apiService.getUser().then( (response) => {
+     console.log(response);
+     this.user = response;
+     });
+   }
 }

@@ -8,11 +8,8 @@ var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
-<<<<<<< HEAD
 var md5 = require( 'md5' );
-=======
 
->>>>>>> 692a4ad94989ea0d23bd08173ae447a59c9666e0
 //---------------------------USE MIDDLEWARE-------------------------------------
 
 router.use( bodyParser.urlencoded( { extended : true } ) ) ;
@@ -33,11 +30,7 @@ router.get( '/' , ( req , res ) =>
       {
         if( !err )
         {
-<<<<<<< HEAD
           res.json(result[0]).status(200) ;
-=======
-          res.json( JSON.stringify( result ) ) ;
->>>>>>> 692a4ad94989ea0d23bd08173ae447a59c9666e0
         }
         else
         {
@@ -51,20 +44,13 @@ router.get( '/' , ( req , res ) =>
     }
   } ) ;
 } ) ;
-<<<<<<< HEAD
 //-----------------------------PUT METHOD--------------------------------------
-=======
-//-----------------------------POST METHOD--------------------------------------
->>>>>>> 692a4ad94989ea0d23bd08173ae447a59c9666e0
 
 router.put( '/edit' , ( req , res ) => { //changes in the database
   req.getConnection( ( error , connection ) => {
     if( !error ) {
-<<<<<<< HEAD
-      connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , md5( req.body.password ), req.body.level , req.cookies.user_info ] , ( error , result ) => {
-=======
-      connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , req.body.password , req.body.level , req.body.id ] , ( error , result ) => {
->>>>>>> 692a4ad94989ea0d23bd08173ae447a59c9666e0
+      connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , md5( req.body.password ), req.body.level , req.cookies.user_info ] , ( error , result ) => 	
+      {
         res.json( JSON.stringify( result ) ) ;
       } ) ;
     }

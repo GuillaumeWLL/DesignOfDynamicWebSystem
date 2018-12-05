@@ -59,17 +59,17 @@ export class GameComponent {
   }
 
   setColors(col: number , row: number): string{
-    if(this.isGameOver){
+   /* if(this.isGameOver){
       return COLORS.GAME_OVER;
-    } else if (this.fruit.x === row && this.fruit.y === col){
+    } else*/ if (this.fruit.x === row && this.fruit.y === col){
       return COLORS.FRUIT;
     }else if (this.snake.parts[0].x === row && this.snake.parts[0].y === col){
       return COLORS.HEAD;
     }else if(this.board[col][row] === true){
       return COLORS.BODY;
-    }else if(this.default_mode === 'obstacles' && this.checkObstacles(row, col)){
+    }/*else if(this.default_mode === 'obstacles' && this.checkObstacles(row, col)){
       return COLORS.OBSTACLE;
-    }
+    }*/
     return COLORS.BOARD;
   };
 
@@ -202,8 +202,8 @@ export class GameComponent {
     }
   }
 
-  gameOver(): void {
-    this.isGameOver = true;
+*/  gameOver(): void {
+   /* this.isGameOver = true;
     this.gameStarted = false;
     let me = this;
     if(this.score > this.best_score){
@@ -215,7 +215,7 @@ export class GameComponent {
       me.isGameOver = false;
     }, 500);
     this.setBoard();
-  }*/
+ */ }
 
   randomNumber(): any{
     return Math.floor(Math.random() * BOARD_SIZE);
@@ -235,12 +235,11 @@ export class GameComponent {
     this.showMenuChecker = !this.showMenuChecker;
   }
 
-  newGame(mode: string): void{
+  newGame(/*mode: string*/): void{
     this.setBoard();
     this.tabMouv = this.gameService.instructions;    //['left', 'left', 'left', 'up','up','up','up', 'right', 'down']; // Ici pour set instructions du tableau
-    console.log('dans le game');
     console.log(this.tabMouv);
-    this.default_mode = mode || 'classic' ;
+    this.default_mode =/* mode || */'classic' ;
     this.newBestScore = false;
     this.score = 0 ;
     this.tempDirection = CONTROLS.LEFT;

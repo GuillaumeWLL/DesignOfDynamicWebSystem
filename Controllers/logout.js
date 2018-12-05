@@ -22,7 +22,8 @@ router.post( '/' , ( req , res ) => {
   req.getConnection( ( error , connection ) => {
     if( !error ) {
       connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.username ] , ( error , result ) => {
-        res.json( JSON.stringify( result ) ) ;
+        res.clearCookie( 'user_info' ) ;
+	res.status(200).json( JSON.stringify( result ) ) ;
       } ) ;
     }
     else {
