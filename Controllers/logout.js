@@ -8,6 +8,7 @@ var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
+var logger = require( '../logs') ;
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
@@ -18,16 +19,23 @@ router.use(cors());
 router.use( cookieParser() );
 
 //---------------------------------GET RESPONSE---------------------------------
-router.post( '/' , ( req , res ) => {
-  req.getConnection( ( error , connection ) => {
-    if( !error ) {
-      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.username ] , ( error , result ) => {
+router.post( '/' , ( req , res ) =>
+{
+  req.getConnection( ( error , connection ) =>
+  {
+    if( !error )
+    {
+      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.name ] , ( error , result ) =>
+      {
+        res.status(202).json( JSON.stringify( result ) ) ;
         res.clearCookie( 'user_info' ) ;
-	res.status(200).json( JSON.stringify( result ) ) ;
+        logger.info( "The user: " + req.body.name +" has been logged out");
       } ) ;
     }
-    else {
+    else
+    {
         res.json( JSON.stringify( error.message ) ) ;
+        logger.error( "Error while logging out user " + req.body.name ) ;
     }
   } ) ;
 } ) ;

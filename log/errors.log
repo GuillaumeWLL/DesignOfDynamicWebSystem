@@ -1,0 +1,8 @@
+{"message":"good connection","level":"info","timestamp":"2018-12-09 12:04:02"}
+{"message":"good connection","level":"info","timestamp":"2018-12-09 12:04:02"}
+{"message":"good connection","level":"info","timestamp":"2018-12-09 12:04:03"}
+2018-12-09 12:09:02 info [undefined]: good connection
+2018-12-09 12:09:02 info [undefined]: good connection
+2018-12-09 12:16:34 info [index.js]: good connection
+2018-12-09 18:35:02 info [index.js]: good connection from user: 
+2018-12-09 18:41:48 info [login.js]: good connection from user: 

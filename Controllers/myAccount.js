@@ -8,6 +8,7 @@ var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
+var logger = require( '../logs' ) ;
 var md5 = require( 'md5' );
 
 //---------------------------USE MIDDLEWARE-------------------------------------
@@ -20,44 +21,52 @@ router.use( cookieParser() );
 
 //-----------------------------GET METHOD---------------------------------------
 
-router.get( '/' , ( req , res ) =>
+router.get( '/' , ( req , res ) => //get the progression for a given user
 {
   req.getConnection( ( error , connection ) =>
   {
     if( !error )
     {
-      connection.query( 'Select * from Users where user_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
+      connection.query( 'Select count(*) from Historic where User_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
       {
         if( !err )
         {
-          res.json(result[0]).status(200) ;
+          res.status(200).json( JSON.stringify( result ) ) ;
+          logger.info( "Access to user " + req.cookies.user_info +" historic" ) ;
         }
         else
         {
-          res.json( JSON.stringify( err.message ) ) ;
+          res.status(401).json( JSON.stringify( err.message ) ) ;
+          logger.error( "error while getting historic for user: "+req.cookies.user_info ) ;
         }
       } ) ;
     }
     else
     {
-      res.json( JSON.stringify( error.message ) ) ;
+      res.stauts(500).json( JSON.stringify( error.message ) ) ;
+      logger.error("error while connecting to the database");
     }
   } ) ;
 } ) ;
 //-----------------------------PUT METHOD--------------------------------------
 
-router.put( '/edit' , ( req , res ) => { //changes in the database
-  req.getConnection( ( error , connection ) => {
-    if( !error ) {
-      connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , md5( req.body.password ), req.body.level , req.cookies.user_info ] , ( error , result ) => 	
-      {
-        res.json( JSON.stringify( result ) ) ;
+router.put( '/edit' , ( req , res ) =>
+{ //changes in the database
+  req.getConnection( ( error , connection ) =>
+  {
+    if( !error )
+    {
+      connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , req.body.password , req.body.level , req.body.id ] , ( error , result ) => {
+        res.status(200).json( JSON.stringify( result ) ) ;
+        logger.info( "updating data for user "+ req.cookies.user_info ) ;
       } ) ;
     }
-    else {
-        res.json( JSON.stringify( error.message ) ) ;
+    else
+    {
+        res.status(400).json( JSON.stringify( error.message ) ) ;
+        logger.error("can't access the database for updating user "+req.cookies.user_info+" data")
     }
   } ) ;
-})
+} );
 
 module.exports = router ;
