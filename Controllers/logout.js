@@ -8,6 +8,7 @@ var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
+var logger = require( '../logs') ;
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
@@ -27,11 +28,13 @@ router.post( '/' , ( req , res ) =>
       connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.name ] , ( error , result ) =>
       {
         res.status(202).json( JSON.stringify( result ) ) ;
+        logger.info( "The user: " + req.body.name +" has been logged out");
       } ) ;
     }
     else
     {
         res.json( JSON.stringify( error.message ) ) ;
+        logger.error( "Error while logging out user " + req.body.name ) ;
     }
   } ) ;
 } ) ;

@@ -9,6 +9,7 @@ var router = express.Router() ;
 var md5 = require( 'md5' ) ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
+var logger = require( '../logs' ) ;
 
 
 //---------------------------USE MIDDLEWARE-------------------------------------
@@ -29,10 +30,12 @@ router.post( '/' , ( req , res ) =>
         if( !error )
         {
           res.status(201).json( result.affectedRows ) ;
+          logger.info( "new user added in the database" ) ;
         }
         else
         {
           res.status(401).json( error.message ) ;
+          logger.error( "trouble adding a new user in the database" ) ;
         }
       } ) ;
   } ) ;

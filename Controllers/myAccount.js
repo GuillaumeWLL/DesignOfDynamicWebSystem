@@ -8,6 +8,7 @@ var bodyParser = require ( 'body-parser' ) ;
 var router = express.Router() ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
+var logger = require( '../logs' ) ;
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
@@ -19,7 +20,7 @@ router.use( cookieParser() );
 
 //-----------------------------GET METHOD---------------------------------------
 
-router.get( '/' , ( req , res ) =>
+router.get( '/' , ( req , res ) => //get the progression for a given user
 {
   req.getConnection( ( error , connection ) =>
   {
@@ -29,17 +30,20 @@ router.get( '/' , ( req , res ) =>
       {
         if( !err )
         {
-          res.json( JSON.stringify( result ) ) ;
+          res.status(200).json( JSON.stringify( result ) ) ;
+          logger.info( "Access to user " + req.cookies.user_info +" historic" ) ;
         }
         else
         {
-          res.json( JSON.stringify( err.message ) ) ;
+          res.status(401).json( JSON.stringify( err.message ) ) ;
+          logger.error( "error while getting historic for user: "+req.cookies.user_info ) ;
         }
       } ) ;
     }
     else
     {
-      res.json( JSON.stringify( error.message ) ) ;
+      res.stauts(500).json( JSON.stringify( error.message ) ) ;
+      logger.error("error while connecting to the database");
     }
   } ) ;
 } ) ;
@@ -52,12 +56,14 @@ router.put( '/edit' , ( req , res ) =>
     if( !error )
     {
       connection.query( 'UPDATE Users SET user_name = ? , user_mail = ? , user_password = ? , user_level = ? WHERE user_id = ?', [ req.body.username , req.body.mail , req.body.password , req.body.level , req.body.id ] , ( error , result ) => {
-        res.json( JSON.stringify( result ) ) ;
+        res.status(200).json( JSON.stringify( result ) ) ;
+        logger.info( "updating data for user "+ req.cookies.user_info ) ;
       } ) ;
     }
     else
     {
-        res.json( JSON.stringify( error.message ) ) ;
+        res.status(400).json( JSON.stringify( error.message ) ) ;
+        logger.error("can't access the database for updating user "+req.cookies.user_info+" data")
     }
   } ) ;
 } );

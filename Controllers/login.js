@@ -9,7 +9,8 @@ var router = express.Router() ;
 var md5 = require( 'md5' ) ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
-var winston = require( 'winston' ) ;
+var logger = require( '../logs') ;
+
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
@@ -18,18 +19,8 @@ router.use( bodyParser.json() ) ;
 router.use( myConnection( mysql , config.database , 'request') ) ;
 router.use( cors() );
 router.use( cookieParser() );
-var logger = winston.createLogger({
-  level: 'error',
-  format: winston.format.combine(
-                  winston.format.timestamp(),
-                  winston.format.printf( info => {
-                    return `${info.timestamp} ${info.level}: ${info.message}`;
-                  })
-                ),
-                transports: [ new winston.transports.File( { filename: 'errors.log' } ) ]
-})
 
-//---------------------------------GET RESPONSE---------------------------------
+/*---------------------------------GET RESPONSE---------------------------------
 
 router.get( '/' , ( req , res ) =>
 {
@@ -39,26 +30,8 @@ router.get( '/' , ( req , res ) =>
     {
       connection.query( 'SELECT * FROM Users', ( error , result ) =>
       {
-        logger.log( 'error' , 'good connection' ) ;
-        /*if( JSON.stringify( req.cookies ).length > 1 )
-        {
-          res.status( 200 ).json( req.cookies ) ;
-        }
-        else
-        {
-          res.status( 200 ).send( 'pas de cookie trouvé' ) ;
-        }
-        */try
-        {
-            res.cookie( 'user_info' , JSON.parse(JSON.stringify(result [0])).user_id ).status(200).send("everything is ok");
-        }
-        catch ( e )
-        {
-          /*if (e instanceof ErrorSyntax)
-          {
-            res.status(400).send( "trouble incomming" ) ;
-          }*/
-        }
+        logger.info( 'good connection from user: '+ req.cookie.user_info*) ;
+        res.cookie( 'user_info' , JSON.parse(JSON.stringify(result [0])).user_id ).status(200).send("everything is ok");
       } ) ;
     }
     else
@@ -66,7 +39,7 @@ router.get( '/' , ( req , res ) =>
         res.status(200).json( JSON.stringify( error.message ) ) ;
     }
   } ) ;
-} ) ;
+} ) ;*/
 
 //--------------POST RESPONSE - FIND IF THE USER IS IN THE DATABASE-------------
 
@@ -84,25 +57,28 @@ router.post( '/' , ( req , res  ) => //when a post request fires
           {
             conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) =>
             {//set the status to 1
+                  logger.info("new connection from user: "+ JSON.parse(JSON.stringify(result [0])).user_id ) //log in the logs.log file
                   res.cookie( 'user_info' , JSON.parse(JSON.stringify(result [0])).user_id ).status(202).send("everything is ok"); //create a cookie with user id
             } );
           } catch ( e )
           {
             if( e instanceof SyntaxError)
             {
-              res.satus(400).send( "trouble incomming" ) ;
+              res.satus( 400 ).send( "trouble incomming" ) ;
+              logger.error( "JSON empty" );
             }
           }
         }
         else//otherwise we tell that a cookie already exists
         {
           res.stauts(200).send("cookie déjà émis");
+          logger.warn("cookie already sent to: " +JSON.parse(JSON.stringify(result [0])).user_id ) ;
         }
       }
       else
       {
-      //  res.json( JSON.stringify( error.message ) ) ; //send the error message
         res.status(400).send( "You are not in the database, please sign in" );
+        logger.error( "user "+ req.body.username +" not in the database" )
       }
     } );
   } ) ;
