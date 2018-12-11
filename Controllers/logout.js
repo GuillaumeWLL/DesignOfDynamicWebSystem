@@ -25,29 +25,16 @@ router.post( '/' , ( req , res ) =>
   {
     if( !error )
     {
-<<<<<<< HEAD
       connection.query( 'UPDATE Users SET user_status = 0 WHERE user_id = ?', [ req.cookies.user_info ] , ( error , result ) =>
       {
         logger.info( "The user: " + req.cookies.user_info +" has been logged out");
 	res.clearCookie( 'user_info' , { httpOnly : true , secure : true } ).status(200).end() ;
-=======
-      connection.query( 'UPDATE Users SET user_status = 0 WHERE user_name = ?', [ req.body.name ] , ( error , result ) =>
-      {
-        res.status(202).json( JSON.stringify( result ) ) ;
-        res.clearCookie( 'user_info' ) ;
-        logger.info( "The user: " + req.body.name +" has been logged out");
->>>>>>> 6485ac87e3e51f3ca2171acfe9f2539e7708f842
       } ) ;
     }
     else
     {
-<<<<<<< HEAD
         res.status(400).json( JSON.stringify( error.message ) ) ;
         logger.error( "Error while logging out user " + req.cookies.user_info ) ;
-=======
-        res.json( JSON.stringify( error.message ) ) ;
-        logger.error( "Error while logging out user " + req.body.name ) ;
->>>>>>> 6485ac87e3e51f3ca2171acfe9f2539e7708f842
     }
   } ) ;
 } ) ;
