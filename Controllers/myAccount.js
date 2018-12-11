@@ -27,7 +27,11 @@ router.get( '/' , ( req , res ) => //get the progression for a given user
   {
     if( !error )
     {
+<<<<<<< HEAD
       connection.query( 'Select * from Users where User_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
+=======
+      connection.query( 'Select count(*) from Historic where User_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
+>>>>>>> 6485ac87e3e51f3ca2171acfe9f2539e7708f842
       {
         if( !err )
         {

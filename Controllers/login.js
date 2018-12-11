@@ -35,22 +35,36 @@ router.post( '/' , ( req , res  ) => //when a post request fires
           try
           {
             conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) =>
+<<<<<<< HEAD
             { //set the status to 1
                   logger.info("new connection from user: "+ JSON.parse(JSON.stringify(result [0])).user_id ) //log in the logs.log file
                   res.cookie( 'user_info' , JSON.parse(JSON.stringify(result [0])).user_id , { httpOnly : true , secure : true }).status(202).json( JSON.parse( JSON.stringify( result [0])).user_id ); //create a cookie with user id
+=======
+            {//set the status to 1
+                  logger.info("new connection from user: "+ JSON.parse(JSON.stringify(result [0])).user_id ) //log in the logs.log file
+                  res.cookie( 'user_info' , JSON.parse(JSON.stringify(result [0])).user_id ).status(202).send("everything is ok"); //create a cookie with user id
+>>>>>>> 6485ac87e3e51f3ca2171acfe9f2539e7708f842
             } );
           } catch ( e )
           {
             if( e instanceof SyntaxError)
             {
+<<<<<<< HEAD
               res.status( 400 ).send( "trouble incomming" ) ;
+=======
+              res.satus( 400 ).send( "trouble incomming" ) ;
+>>>>>>> 6485ac87e3e51f3ca2171acfe9f2539e7708f842
               logger.error( "JSON empty" );
             }
           }
         }
         else //otherwise we tell that a cookie already exists
         {
+<<<<<<< HEAD
           res.status(200).send("cookie déjà émis");
+=======
+          res.stauts(200).send("cookie déjà émis");
+>>>>>>> 6485ac87e3e51f3ca2171acfe9f2539e7708f842
           logger.warn("cookie already sent to: " +JSON.parse(JSON.stringify(result [0])).user_id ) ;
         }
       }
