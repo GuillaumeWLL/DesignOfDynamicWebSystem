@@ -9,6 +9,8 @@ var router = express.Router() ;
 var md5 = require( 'md5' ) ;
 var cors = require( 'cors' );
 var cookieParser = require( 'cookie-parser' ) ;
+var logger = require( '../logs') ;
+
 
 //---------------------------USE MIDDLEWARE-------------------------------------
 
@@ -30,20 +32,32 @@ router.post( '/' , ( req , res  ) => //when a post request fires
       {
         if( JSON.stringify( req.cookies ) === '{}' ) //if there is no cookie ==> we create one
         {
-          conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) =>
-          { // set the status to 1
-          } );
-		res.cookie( 'user_info' , JSON.parse( JSON.stringify( result[0] ) ).user_id ) ;
-		res.status(200).json(result);
+          try
+          {
+            conn.query( 'UPDATE Users SET user_status = 1 WHERE user_id = ?' , [ JSON.parse( JSON.stringify( result[ 0 ] ) ).user_id ] , ( error , resul ) =>
+            { //set the status to 1
+                  logger.info("new connection from user: "+ JSON.parse(JSON.stringify(result [0])).user_id ) //log in the logs.log file
+                  res.cookie( 'user_info' , JSON.parse(JSON.stringify(result [0])).user_id , { httpOnly : true , secure : true }).status(202).json( JSON.parse( JSON.stringify( result [0])).user_id ); //create a cookie with user id
+            } );
+          } catch ( e )
+          {
+            if( e instanceof SyntaxError)
+            {
+              res.status( 400 ).send( "trouble incomming" ) ;
+              logger.error( "JSON empty" );
+            }
+          }
         }
         else //otherwise we tell that a cookie already exists
         {
-          console.log("cookie déjà émis");
+          res.status(200).send("cookie déjà émis");
+          logger.warn("cookie already sent to: " +JSON.parse(JSON.stringify(result [0])).user_id ) ;
         }
       }
       else
       {
-      	res.json( JSON.stringify( error.message ) ) ; //send the error message
+        res.status(400).send( "You are not in the database, please sign in" );
+        logger.error( "user "+ req.body.username +" not in the database" )
       }
     } );
   } ) ;

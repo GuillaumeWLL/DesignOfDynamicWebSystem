@@ -1,0 +1,83 @@
+2018-12-09 19:06:18 info [login.js]: new connection from user: 12
+2018-12-09 19:06:22 info [login.js]: Access to user 12 historic
+2018-12-09 19:06:31 info [login.js]: Access to user 12 historic
+2018-12-09 19:06:31 info [login.js]: Access to user 12 historic
+2018-12-09 19:09:09 warn [login.js]: cookie already sent to: 12
+2018-12-09 19:09:12 warn [login.js]: cookie already sent to: 12
+2018-12-09 19:09:23 info [login.js]: new connection from user: 12
+2018-12-09 19:09:26 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:11:16 info [login.js]: new connection from user: 12
+2018-12-09 19:12:04 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:13:04 info [login.js]: new connection from user: 12
+2018-12-09 19:13:07 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:17:21 info [login.js]: new connection from user: 12
+2018-12-09 19:17:26 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:18:14 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:18:15 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:18:16 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:18:16 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:18:16 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:18:16 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:19:01 info [login.js]: The user: undefined has been logged out
+2018-12-09 19:21:39 info [login.js]: new connection from user: 12
+2018-12-09 19:21:41 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:25:12 info [login.js]: new connection from user: 12
+2018-12-09 19:25:16 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:25:19 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:25:20 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:25:20 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:25:20 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:25:20 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:26:59 warn [login.js]: cookie already sent to: 12
+2018-12-09 19:27:19 info [login.js]: new connection from user: 12
+2018-12-09 19:27:21 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:28:15 info [login.js]: new connection from user: 12
+2018-12-09 19:28:17 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:28:33 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:28:34 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:28:34 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:28:34 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:28:34 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:29:48 info [login.js]: new connection from user: 12
+2018-12-09 19:29:50 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:31:38 info [login.js]: new connection from user: 12
+2018-12-09 19:31:40 info [login.js]: The user: 12 has been logged out
+2018-12-09 19:32:02 warn [login.js]: cookie already sent to: 12
+2018-12-11 09:24:32 info [login.js]: new connection from user: 12
+2018-12-11 09:24:35 info [login.js]: Access to user 12 historic
+2018-12-11 09:24:38 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:24:43 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:29:30 info [login.js]: new connection from user: 12
+2018-12-11 09:30:08 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:30:10 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:30:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:30:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:30:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:30:12 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:32:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:32:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:32:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:32:11 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:32:12 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:32:12 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:33:23 info [login.js]: new connection from user: 12
+2018-12-11 09:33:25 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:37:23 info [login.js]: new connection from user: 12
+2018-12-11 09:37:26 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:39:26 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:48:53 info [login.js]: new connection from user: 12
+2018-12-11 09:52:17 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:52:36 info [login.js]: new connection from user: 12
+2018-12-11 09:52:43 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:53:00 info [login.js]: new connection from user: 12
+2018-12-11 09:53:03 info [login.js]: Access to user 12 historic
+2018-12-11 09:56:43 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:56:53 info [login.js]: new connection from user: 12
+2018-12-11 09:56:55 info [login.js]: Access to user 12 historic
+2018-12-11 09:57:21 info [login.js]: The user: 12 has been logged out
+2018-12-11 09:57:37 info [login.js]: new connection from user: 12
+2018-12-11 09:57:43 info [login.js]: Access to user 12 historic
+2018-12-11 09:57:53 info [login.js]: Access to user 12 historic
+2018-12-11 09:57:55 info [login.js]: Access to user 12 historic
+2018-12-11 10:06:07 info [login.js]: new connection from user: 12
+2018-12-11 10:06:09 info [login.js]: Access to user 12 historic
