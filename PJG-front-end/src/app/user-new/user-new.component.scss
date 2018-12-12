@@ -1,14 +1,15 @@
 .center{
-  width: 80%;
   max-width: 600px;
   max-height: 500px;
   margin: 10px auto;
 }
 
 .basic-container {
+  height: 85%;
   text-align: center;
   justify-content: center;
   align-items: center;
+  background-color: rgba(63, 81, 181, .2);
 }
 
 .example-right-align {

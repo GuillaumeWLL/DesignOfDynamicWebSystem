@@ -9,8 +9,6 @@ import {environment} from '../../environments/environment';
 
 export class RegisterService {
 
-  isAuth = true;
-
   constructor(private httpClient: HttpClient) {}
 
   signIn(

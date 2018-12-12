@@ -1,21 +1,30 @@
-
-
-
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+<div class="font">
+<mat-drawer-container class="sidenav">
+  <mat-drawer mode="side" opened class="sidenav-font">
     <app-sidebar></app-sidebar>
   </mat-drawer>
-  <mat-drawer-content>
+  <mat-drawer-content class="drawer-content">
     <div class="basic-container">
       <form class="form-horizontal" [formGroup]="userForm">
         <mat-form-field>
           <input matInput placeholder="Enter your email"
-                 formControlName="email">
+                 formControlName="email"
+                 [(value)]="user.user_mail">
         </mat-form-field>
         <p> </p>
         <mat-form-field>
           <input matInput placeholder="Username"
-                 formControlName="username">
+                 formControlName="username"
+                 [(value)]="user.user_name">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field>
+          <mat-select placeholder="Mode"
+                      [(value)]="selectedMode">
+            <mat-option *ngFor="let mode of modes" [value]="mode.value">
+              {{ mode.viewValue }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <p></p>
         <button mat-raised-button color="primary" (click)=togglePassword() > change Password </button>
@@ -33,8 +42,10 @@
             <input matInput placeholder="Enter your new password"
                    id = 'newPassword'
                    [type]="hide ? 'password' : 'text'"
-                   formControlName="newPassword">
+                   formControlName="newPassword"
+                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error>getErrorPasswordMessage()</mat-error>
           </mat-form-field>
           <p> </p>
           <mat-form-field>
@@ -47,9 +58,9 @@
         </div>
         <p></p>
         <p></p>
-        <button mat-raised-button color="primary" (click)=onUpdate() [disabled]="this.changePassword && userForm['oldPassword']==='' ">Update</button>
+        <button mat-raised-button color="primary" [disabled]="this.changePassword && userForm['oldPassword']===''" (click)=onUpdate()>Update</button>
       </form>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
-
+</div>

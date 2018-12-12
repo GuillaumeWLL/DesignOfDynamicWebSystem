@@ -4,6 +4,11 @@ import {ApiService} from '../../services/api.service';
 import {User} from '../../models/user.model';
 import {getOrCreateCurrentQueries} from '@angular/core/src/render3/instructions';
 
+export interface Mode {
+  value: number;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -12,19 +17,27 @@ import {getOrCreateCurrentQueries} from '@angular/core/src/render3/instructions'
 export class EditProfileComponent implements OnInit {
 
   userForm: FormGroup;
+  selectedMode: number;
+  //user: any;
 
-  test: any;
+  modes: Mode[] = [
+    {value: 1, viewValue: 'Zen'},
+    {value: 2, viewValue: 'Speed-run'},
+    {value: 3, viewValue: 'Hardcore'}
+  ];
+
+  user: any;
   changePassword: boolean;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
+    this.user = {"user_id":12,"user_name":"aaa","user_mail":"qsfs@sfs.Fr","user_password":"47bce5c74f589f4867dbd57e9ca9f808","user_level":3,"user_progression":null,"user_status":1};
+    this.selectedMode = this.user.user_level;
+  }
 
   ngOnInit() {
-    this.test = { username: 'PJ', email: 'pj@gg.c', password: 'eee'};
-    /*this.apiService.getUser().then( (response) => {
-      this.test = response;
-    });*/
-    // a uncomment qd server active
-    //this.apiService.getUser();
+    //this.apiService.getUser().then( (response) => {
+      //this.user = response;
+   // });
     this.userForm = this.formBuilder.group( {
         email: ['', [Validators.email]],
         username: ['', []],
@@ -36,11 +49,13 @@ export class EditProfileComponent implements OnInit {
     this.changePassword = false;
   }
 
-  /*getCurrUserInfos() {
-    this.test = this.apiService.getUser().then( r => {
-      console.log(r);
+  getCurrUserInfos(): any {
+    this.apiService.getUser().then( response => {
+      console.log(response);
+      return response;
+
     });
-  }*/
+  }
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     const pass = group.controls.newPassword.value;
@@ -50,12 +65,14 @@ export class EditProfileComponent implements OnInit {
   }
 
   onUpdate() {
+    //this.user = this.getCurrUserInfos();
+    this.user = {"user_id":12,"user_name":"aaa","user_mail":"qsfs@sfs.Fr","user_password":"47bce5c74f589f4867dbd57e9ca9f808","user_level":3,"user_progression":null,"user_status":1};
     const formValue = this.userForm.value;
     if ( formValue['username'] === '' ) {
-      formValue['username'] = this.test.username;
+      formValue['username'] = this.user.user_name;
     }
     if ( formValue['email'] === '' ) {
-      formValue['email'] = this.test.email;
+      formValue['email'] = this.user.user_mail;
     }
     if (this.changePassword === true) {
       if (formValue['oldPassword'] === formValue['newPassword']) {
@@ -63,25 +80,26 @@ export class EditProfileComponent implements OnInit {
           formValue['username'],
           formValue['email'],
           formValue['oldPassword'],
-          2);
+          this.selectedMode);
       } else {
         this.apiService.updateProfile(
           formValue['username'],
           formValue['email'],
           formValue['newPassword'],
-          2);
+          this.selectedMode);
       }
     } else {
       this.apiService.updateProfile(
         formValue['username'],
         formValue['email'],
-        this.test.password,
-        2);
+        this.user.user_password,
+        this.selectedMode);
     }
     console.log(formValue['username']);
     console.log(formValue['email']);
     console.log(formValue['oldPassword']);
-    console.log(this.test.password);
+    console.log(this.selectedMode);
+    console.log(this.user.user_password);
 
 
   }

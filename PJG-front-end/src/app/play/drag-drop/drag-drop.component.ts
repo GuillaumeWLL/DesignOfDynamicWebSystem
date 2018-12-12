@@ -9,22 +9,19 @@ import {GameService} from '../../services/game.service';
 })
 export class DragDropComponent {
 
-  todo = [
-    'left',
-    'left',
-    'left',
-    'up',
-    'up',
-    'up',
-    'up',
-    'right',
-    'down'
+  possibleActions = [
+    'left()',
+    'right()',
+    'up()',
+    'down()'
   ];
 
-  done = [
+  instructionQueue = [
   ];
 
-  constructor(private gameService: GameService){}
+  constructor(private gameService: GameService){
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -33,9 +30,14 @@ export class DragDropComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-      console.log('dans le else');
-      console.log(this.done);
-      this.gameService.pushInstructions(this.done);
+      this.possibleActions = [
+        'left()',
+        'right()',
+        'up()',
+        'down()'
+      ];
+      this.gameService.pushInstructions(this.instructionQueue);
+
     }
   }
 }

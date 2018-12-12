@@ -11,7 +11,7 @@ export class GameService {
 
   @Output() instructionEvent: EventEmitter<string[]> = new EventEmitter();
 
-  pushInstructions( instructions: string[]){
+  pushInstructions( instructions: string[]) {
     this.instructions = instructions;
     this.instructionEvent.emit(this.instructions);
   }
