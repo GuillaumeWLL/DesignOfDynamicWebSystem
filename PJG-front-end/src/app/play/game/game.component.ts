@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { CONTROLS, COLORS, BOARD_SIZE, GAME_MODES } from './game.constants' ;
 import { GameService } from '../../services/game.service';
@@ -46,22 +45,28 @@ export class GameComponent {
 //  handleKeyboardEvents( e: KeyboardEvent){
   movement( tabMouv )
   {
-    if( tabMouv[0] === "left" && this.snake.direction !== CONTROLS.RIGHT){
+    if( tabMouv[0] === "left()" && this.snake.direction) {
       this.tempDirection = CONTROLS.LEFT;
-    } else if ( tabMouv[0] === "up" && this.snake.direction !== CONTROLS.DOWN){
+    } else if ( tabMouv[0] === "up()" && this.snake.direction) {
       this.tempDirection = CONTROLS.UP;
-    } else if ( tabMouv[0] === "right" && this.snake.direction !== CONTROLS.LEFT){
+    } else if ( tabMouv[0] === "right()" && this.snake.direction) {
       this.tempDirection = CONTROLS.RIGHT;
-    } else if ( tabMouv[0] === "down" && this.snake.direction !== CONTROLS.UP){
+    } else if ( tabMouv[0] === "down()" && this.snake.direction) {
       this.tempDirection = CONTROLS.DOWN;
     }
     this.tabMouv.shift();
   }
 
   setColors(col: number , row: number): string{
+<<<<<<< HEAD
    /* if(this.isGameOver){
       return COLORS.GAME_OVER;
     } else*/ if (this.fruit.x === row && this.fruit.y === col){
+=======
+    /* if(this.isGameOver){
+       return COLORS.GAME_OVER;
+     } else*/ if (this.fruit.x === row && this.fruit.y === col){
+>>>>>>> Front-End
       return COLORS.FRUIT;
     }else if (this.snake.parts[0].x === row && this.snake.parts[0].y === col){
       return COLORS.HEAD;
@@ -203,6 +208,7 @@ export class GameComponent {
   }
 
 */  gameOver(): void {
+<<<<<<< HEAD
    /* this.isGameOver = true;
     this.gameStarted = false;
     let me = this;
@@ -216,6 +222,21 @@ export class GameComponent {
     }, 500);
     this.setBoard();
  */ }
+=======
+    /* this.isGameOver = true;
+     this.gameStarted = false;
+     let me = this;
+     if(this.score > this.best_score){
+       this.best_score = this.score ;
+       this.newBestScore = true;
+     }
+
+     setTimeout(() => {
+       me.isGameOver = false;
+     }, 500);
+     this.setBoard();
+  */ }
+>>>>>>> Front-End
 
   randomNumber(): any{
     return Math.floor(Math.random() * BOARD_SIZE);
@@ -239,10 +260,14 @@ export class GameComponent {
     this.setBoard();
     this.tabMouv = this.gameService.instructions;    //['left', 'left', 'left', 'up','up','up','up', 'right', 'down']; // Ici pour set instructions du tableau
     console.log(this.tabMouv);
+<<<<<<< HEAD
+=======
+    this.tabMouv.unshift(this.tabMouv[0]);
+>>>>>>> Front-End
     this.default_mode =/* mode || */'classic' ;
     this.newBestScore = false;
     this.score = 0 ;
-    this.tempDirection = CONTROLS.LEFT;
+    this.tempDirection;
     this.interval = 500;
     this.snake = {
       direction: CONTROLS.LEFT,
@@ -262,4 +287,3 @@ export class GameComponent {
     this.updatePositions();
   }
 }//end of app
-

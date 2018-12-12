@@ -1,13 +1,14 @@
 <mat-toolbar class="toolbar" color="primary">
   <mat-toolbar-row>
-    <a mat-button routerLinkActive="active" routerLink="/home">Home</a>
-    <a mat-button routerLinkActive="active" routerLink="/play">Play</a>
+    <div class="buttons"></div>
+      <button mat-button routerLinkActive="active" color="accent" routerLink="/home">Home</button>
+      <button mat-button routerLinkActive="active" color="accent" routerLink="/play">Play</button>
 
-    <span class="example-spacer"></span>
-    <button mat-button routerLink="/auth" routerLinkActive="active" *ngIf="!isAuth" >Login/Register</button>
-    <button mat-button routerLink="/profile" routerLinkActive="active" *ngIf="isAuth">Profile</button>
-    <button mat-button routerLink="/home" routerLinkActive="active" *ngIf="isAuth" (click)="logout()">log out</button>
+      <span class="spacer"></span>
 
+      <button mat-button routerLink="/auth" color="accent" routerLinkActive="active" *ngIf="!isAuth" >Login/Register</button>
+      <button mat-button routerLink="/profile" color="accent" routerLinkActive="active" >Profile</button>
+      <button mat-button routerLink="/home" color="accent" routerLinkActive="active" *ngIf="isAuth" (click)="logout()">log out</button>
   </mat-toolbar-row>
 </mat-toolbar>
 

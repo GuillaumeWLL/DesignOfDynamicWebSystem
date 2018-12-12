@@ -38,7 +38,7 @@ export class UserLoginComponent implements OnInit {
       formValue['password']).then(
         r => {
           console.log(r);
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }
     );
   }

@@ -8,6 +8,7 @@ import {RegisterService} from '../services/register.service';
 
 export interface Mode {
   name: string;
+  value: number;
   rules: string;
 }
 
@@ -20,11 +21,12 @@ export class UserNewComponent implements OnInit {
 
   hide = true;
   userForm: FormGroup;
+  selectedMode: number;
 
   modes: Mode[] = [
-    {name: 'Zen', rules: 'Zen rules' },
-    {name: 'Speed-run', rules: 'Speed-run rules' },
-    {name: 'Hardcore', rules: 'Hardcore rules' }
+    {name: 'Zen', value: 1, rules: 'Zen rules' },
+    {name: 'Speed-run', value: 2, rules: 'Speed-run rules' },
+    {name: 'Hardcore', value: 3, rules: 'Hardcore rules' }
   ];
 
   constructor(private registerService: RegisterService, private formBuilder: FormBuilder){}
@@ -55,7 +57,7 @@ export class UserNewComponent implements OnInit {
       formValue['username'],
       formValue['email'],
       formValue['password'],
-      2);
+      this.selectedMode);
 
   }
 }

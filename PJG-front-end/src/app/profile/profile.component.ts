@@ -17,6 +17,12 @@ export class ProfileComponent implements OnInit {
     this.apiService.getUser().then( (response) => {
      console.log(response);
      this.user = response;
+<<<<<<< HEAD
      });
    }
+=======
+     }
+   );
+  }
+>>>>>>> Front-End
 }

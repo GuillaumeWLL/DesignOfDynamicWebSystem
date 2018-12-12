@@ -1,9 +1,14 @@
-<div class="basic-container">
-  <mat-card>
-    <app-drag-drop></app-drag-drop>
-  </mat-card>
-  <mat-card>
-    <app-game></app-game>
-  </mat-card>
+<div class="bounds">
+  <div class="content"
+       fxLayoutAlign="center"
+       fxLayout="row"
+       fxLayout.xs="column"
+       fxFlexFill >
+    <div class="sec1">
+      <app-drag-drop></app-drag-drop>
+    </div>
+    <div class="sec2" >
+      <app-game></app-game>
+    </div>
+  </div>
 </div>
-
