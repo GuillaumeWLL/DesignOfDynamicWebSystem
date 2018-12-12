@@ -18,7 +18,7 @@ export class EditProfileComponent implements OnInit {
 
   userForm: FormGroup;
   selectedMode: number;
-  //user: any;
+  user: any;
 
   modes: Mode[] = [
     {value: 1, viewValue: 'Zen'},
@@ -26,18 +26,16 @@ export class EditProfileComponent implements OnInit {
     {value: 3, viewValue: 'Hardcore'}
   ];
 
-  user: any;
   changePassword: boolean;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
-    this.user = {"user_id":12,"user_name":"aaa","user_mail":"qsfs@sfs.Fr","user_password":"47bce5c74f589f4867dbd57e9ca9f808","user_level":3,"user_progression":null,"user_status":1};
     this.selectedMode = this.user.user_level;
   }
 
   ngOnInit() {
-    //this.apiService.getUser().then( (response) => {
-      //this.user = response;
-   // });
+    this.apiService.getUser().then( (response) => {
+      this.user = response;
+    });
     this.userForm = this.formBuilder.group( {
         email: ['', [Validators.email]],
         username: ['', []],
@@ -65,8 +63,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onUpdate() {
-    //this.user = this.getCurrUserInfos();
-    this.user = {"user_id":12,"user_name":"aaa","user_mail":"qsfs@sfs.Fr","user_password":"47bce5c74f589f4867dbd57e9ca9f808","user_level":3,"user_progression":null,"user_status":1};
+    this.user = this.getCurrUserInfos();
     const formValue = this.userForm.value;
     if ( formValue['username'] === '' ) {
       formValue['username'] = this.user.user_name;
