@@ -15,7 +15,7 @@ export class AuthService {
 
   public currentUser: User;
 
-  isAuth = true;
+  isAuth:boolean;
 
 
 

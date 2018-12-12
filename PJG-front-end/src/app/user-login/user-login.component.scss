@@ -1,5 +1,4 @@
 .center{
-  width: 80%;
   max-width: 600px;
   max-height: 500px;
   margin: 10px auto;
@@ -9,19 +8,12 @@
   text-align: center;
   justify-content: center;
   align-items: center;
+  height: 85%;
+  background-color: rgba(63, 81, 181, .2);
 }
 
 .example-right-align {
   text-align: right;
-}
-
-input.example-right-align::-webkit-outer-spin-button,
-input.example-right-align::-webkit-inner-spin-button {
-  display: none;
-}
-
-input.example-right-align {
-  -moz-appearance: textfield;
 }
 
 .basic-card {
