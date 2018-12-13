@@ -16,7 +16,7 @@ export class ApiService {
       this.httpClient.get(`${environment.api_url}/myAccount`)
         .subscribe(
           (response) => {
-            console.log(response);
+           // console.log(response);
             resolve(response);
           },
           (error) => {

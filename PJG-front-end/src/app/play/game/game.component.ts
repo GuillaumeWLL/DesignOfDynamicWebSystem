@@ -58,15 +58,9 @@ export class GameComponent {
   }
 
   setColors(col: number , row: number): string{
-<<<<<<< HEAD
    /* if(this.isGameOver){
       return COLORS.GAME_OVER;
     } else*/ if (this.fruit.x === row && this.fruit.y === col){
-=======
-    /* if(this.isGameOver){
-       return COLORS.GAME_OVER;
-     } else*/ if (this.fruit.x === row && this.fruit.y === col){
->>>>>>> Front-End
       return COLORS.FRUIT;
     }else if (this.snake.parts[0].x === row && this.snake.parts[0].y === col){
       return COLORS.HEAD;
@@ -208,7 +202,6 @@ export class GameComponent {
   }
 
 */  gameOver(): void {
-<<<<<<< HEAD
    /* this.isGameOver = true;
     this.gameStarted = false;
     let me = this;
@@ -222,21 +215,6 @@ export class GameComponent {
     }, 500);
     this.setBoard();
  */ }
-=======
-    /* this.isGameOver = true;
-     this.gameStarted = false;
-     let me = this;
-     if(this.score > this.best_score){
-       this.best_score = this.score ;
-       this.newBestScore = true;
-     }
-
-     setTimeout(() => {
-       me.isGameOver = false;
-     }, 500);
-     this.setBoard();
-  */ }
->>>>>>> Front-End
 
   randomNumber(): any{
     return Math.floor(Math.random() * BOARD_SIZE);
@@ -259,11 +237,7 @@ export class GameComponent {
   newGame(/*mode: string*/): void{
     this.setBoard();
     this.tabMouv = this.gameService.instructions;    //['left', 'left', 'left', 'up','up','up','up', 'right', 'down']; // Ici pour set instructions du tableau
-    console.log(this.tabMouv);
-<<<<<<< HEAD
-=======
     this.tabMouv.unshift(this.tabMouv[0]);
->>>>>>> Front-End
     this.default_mode =/* mode || */'classic' ;
     this.newBestScore = false;
     this.score = 0 ;

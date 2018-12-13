@@ -31,7 +31,7 @@ router.get( '/' , ( req , res ) => //get the progression for a given user
       {
         if( !err )
         {
-          res.status(200).json( JSON.stringify( result[ 0 ] ) ) ;
+          res.status(200).json(  result[ 0 ]  ) ;
           logger.info( "Access to user " + req.cookies.user_info +" historic" ) ;
         }
         else

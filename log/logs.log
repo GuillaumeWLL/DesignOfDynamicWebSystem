@@ -186,3 +186,82 @@
 2018-12-12 11:52:53 info [login.js]: Access to user undefined historic
 2018-12-12 11:53:12 info [login.js]: Access to user undefined historic
 2018-12-12 11:54:06 info [login.js]: updating data for user undefined
+2018-12-12 22:44:04 info [login.js]: new connection from user: 12
+2018-12-12 22:44:08 info [login.js]: Access to user 12 historic
+2018-12-12 22:44:18 info [login.js]: Access to user 12 historic
+2018-12-12 22:44:55 info [login.js]: The user: 12 has been logged out
+2018-12-12 22:48:12 info [login.js]: new connection from user: 12
+2018-12-12 22:48:14 info [login.js]: Access to user 12 historic
+2018-12-12 22:58:05 info [login.js]: The user: 12 has been logged out
+2018-12-12 22:58:29 info [login.js]: new connection from user: 12
+2018-12-12 22:58:37 info [login.js]: Access to user 12 historic
+2018-12-12 23:06:05 info [login.js]: The user: 12 has been logged out
+2018-12-12 23:06:17 info [login.js]: new connection from user: 12
+2018-12-12 23:06:25 info [login.js]: Access to user 12 historic
+2018-12-12 23:19:24 warn [login.js]: cookie already sent to: 12
+2018-12-12 23:20:11 info [login.js]: new connection from user: 12
+2018-12-12 23:20:13 info [login.js]: Access to user 12 historic
+2018-12-12 23:20:43 info [login.js]: Access to user 12 historic
+2018-12-13 07:19:01 warn [login.js]: cookie already sent to: 12
+2018-12-13 07:19:28 info [login.js]: new connection from user: 12
+2018-12-13 07:19:30 info [login.js]: Access to user 12 historic
+2018-12-13 07:19:58 info [login.js]: The user: 12 has been logged out
+2018-12-13 07:29:09 info [login.js]: new connection from user: 12
+2018-12-13 07:29:11 info [login.js]: Access to user 12 historic
+2018-12-13 07:29:58 info [login.js]: new connection from user: 12
+2018-12-13 07:30:02 info [login.js]: Access to user 12 historic
+2018-12-13 07:30:13 info [login.js]: The user: 12 has been logged out
+2018-12-13 07:30:28 info [login.js]: Access to user 12 historic
+2018-12-13 07:30:35 info [login.js]: Access to user 12 historic
+2018-12-13 07:31:28 info [login.js]: The user: 12 has been logged out
+2018-12-13 07:38:27 info [login.js]: new connection from user: 12
+2018-12-13 07:38:29 info [login.js]: Access to user 12 historic
+2018-12-13 07:47:58 info [login.js]: The user: 12 has been logged out
+2018-12-13 07:48:14 info [login.js]: new connection from user: 12
+2018-12-13 07:48:15 info [login.js]: Access to user 12 historic
+2018-12-13 07:54:10 info [login.js]: The user: 12 has been logged out
+2018-12-13 07:54:21 info [login.js]: new connection from user: 12
+2018-12-13 07:54:22 info [login.js]: Access to user 12 historic
+2018-12-13 07:58:32 info [login.js]: new connection from user: 12
+2018-12-13 07:58:34 info [login.js]: The user: 12 has been logged out
+2018-12-13 07:59:01 error [login.js]: trouble adding a new user in the database
+2018-12-13 07:59:18 error [login.js]: user test123 not in the database
+2018-12-13 07:59:20 error [login.js]: user test123 not in the database
+2018-12-13 07:59:32 info [login.js]: new connection from user: 12
+2018-12-13 07:59:42 info [login.js]: new connection from user: 12
+2018-12-13 08:01:37 info [login.js]: The user: 12 has been logged out
+2018-12-13 08:01:43 info [login.js]: new connection from user: 12
+2018-12-13 08:01:45 info [login.js]: Access to user 12 historic
+2018-12-13 08:01:55 info [login.js]: The user: 12 has been logged out
+2018-12-13 08:02:00 info [login.js]: new connection from user: 12
+2018-12-13 08:02:02 info [login.js]: Access to user 12 historic
+2018-12-13 08:02:26 info [login.js]: The user: 12 has been logged out
+2018-12-13 08:05:42 info [login.js]: new connection from user: 12
+2018-12-13 08:05:47 info [login.js]: Access to user 12 historic
+2018-12-13 08:07:03 info [login.js]: The user: 12 has been logged out
+2018-12-13 08:14:14 warn [login.js]: cookie already sent to: 12
+2018-12-13 08:14:33 info [login.js]: new connection from user: 12
+2018-12-13 08:14:35 info [login.js]: Access to user 12 historic
+2018-12-13 08:15:26 info [login.js]: Access to user 12 historic
+2018-12-13 08:24:29 info [login.js]: The user: 12 has been logged out
+2018-12-13 08:26:12 info [login.js]: new connection from user: 12
+2018-12-13 08:26:14 info [login.js]: Access to user 12 historic
+2018-12-13 08:26:31 info [login.js]: Access to user 12 historic
+2018-12-13 09:09:32 info [login.js]: The user: 12 has been logged out
+2018-12-13 09:09:52 info [login.js]: new connection from user: 12
+2018-12-13 09:09:54 info [login.js]: Access to user 12 historic
+2018-12-13 09:10:09 info [login.js]: The user: 12 has been logged out
+2018-12-13 09:18:05 info [login.js]: new connection from user: 12
+2018-12-13 09:18:07 info [login.js]: Access to user 12 historic
+2018-12-13 09:23:59 info [login.js]: The user: 12 has been logged out
+2018-12-13 09:26:41 info [login.js]: new connection from user: 12
+2018-12-13 09:26:43 info [login.js]: Access to user 12 historic
+2018-12-13 09:26:45 info [login.js]: Access to user 12 historic
+2018-12-13 09:42:37 info [login.js]: The user: 12 has been logged out
+2018-12-13 09:42:44 info [login.js]: new connection from user: 12
+2018-12-13 09:42:46 info [login.js]: Access to user 12 historic
+2018-12-13 09:42:48 info [login.js]: Access to user 12 historic
+2018-12-13 09:43:47 info [login.js]: The user: 12 has been logged out
+2018-12-13 09:53:21 info [login.js]: new connection from user: 12
+2018-12-13 09:53:22 info [login.js]: Access to user undefined historic
+2018-12-13 09:53:25 info [login.js]: Access to user undefined historic
