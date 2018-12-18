@@ -265,3 +265,29 @@
 2018-12-13 09:53:21 info [login.js]: new connection from user: 12
 2018-12-13 09:53:22 info [login.js]: Access to user undefined historic
 2018-12-13 09:53:25 info [login.js]: Access to user undefined historic
+2018-12-13 22:43:38 error [login.js]: trouble adding a new user in the database
+2018-12-13 22:44:58 error [login.js]: trouble adding a new user in the database
+2018-12-13 22:45:38 error [login.js]: trouble adding a new user in the database
+2018-12-13 22:46:49 error [login.js]: trouble adding a new user in the database
+2018-12-13 22:47:20 error [login.js]: trouble adding a new user in the database
+2018-12-13 22:48:41 error [login.js]: trouble adding a new user in the database
+2018-12-14 11:04:50 info [login.js]: new connection from user: 12
+2018-12-14 11:08:01 info [login.js]: Access to user 1 historic
+2018-12-14 11:34:35 info [login.js]: Access to user 1 historic
+2018-12-17 15:05:04 info [login.js]: new connection from user: 12
+2018-12-17 15:05:09 info [login.js]: The user: 12 has been logged out
+2018-12-17 15:27:13 warn [login.js]: cookie already sent to: 12
+2018-12-17 15:27:21 info [login.js]: new connection from user: 12
+2018-12-17 15:30:00 info [login.js]: new connection from user: 12
+2018-12-17 15:30:02 info [login.js]: The user: 12 has been logged out
+2018-12-17 15:32:50 info [login.js]: new connection from user: 12
+2018-12-17 15:32:52 info [login.js]: The user: 12 has been logged out
+2018-12-17 17:50:02 info [login.js]: new connection from user: 12
+2018-12-17 17:50:04 info [login.js]: Access to user 12 historic
+2018-12-17 17:50:06 info [login.js]: Access to user 12 historic
+2018-12-17 17:59:17 info [login.js]: The user: 12 has been logged out
+2018-12-17 17:59:22 info [login.js]: new connection from user: 12
+2018-12-17 17:59:24 info [login.js]: Access to user 12 historic
+2018-12-17 17:59:26 info [login.js]: Access to user 12 historic
+2018-12-17 17:59:31 info [login.js]: The user: 12 has been logged out
+2018-12-17 18:01:59 info [login.js]: new connection from user: 12

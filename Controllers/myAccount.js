@@ -27,7 +27,7 @@ router.get( '/' , ( req , res ) => //get the progression for a given user
   {
     if( !error )
     {
-      connection.query( 'Select * from Users where User_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
+      connection.query( 'Select *  from Users where User_id = ?' , [ req.cookies.user_info ] , ( err , result ) =>
       {
         if( !err )
         {
@@ -43,11 +43,35 @@ router.get( '/' , ( req , res ) => //get the progression for a given user
     }
     else
     {
-      res.stauts(500).json( JSON.stringify( error.message ) ) ;
+      res.status(500).json( JSON.stringify( error.message ) ) ;
       logger.error("error while connecting to the database");
     }
   } ) ;
 } ) ;
+
+//-----------------------------GET PROGRESSION--------------------------------
+var nb;
+var lvl;
+var prog;
+router.get('/progression' , ( req , res ) => 
+{
+ req.getConnection( ( error , connection ) => 
+ {
+  connection.query( 'Select Count(User_ID) as nb from Historic where User_ID = ? ' ,  [ req.cookies.user_info] , ( err , result ) => 
+  {
+   nb = JSON.parse( JSON.stringify( result[0] ) ).nb ;
+  });
+  connection.query( 'Select Count(Level_ID) as lvl from Levels where Difficulty_ID = 1' , ( err , resu ) => 
+  {
+   lvl  = JSON.parse( JSON.stringify( resu[0] ) ).lvl ;
+   prog = nb/lvl ;
+   res.status(200).json(prog);
+   connection.query( 'Update Users Set user_progression = ? Where user_id = ?' , [ prog , req.cookies.user_info ] , ( error , resuu ) => 
+   {});
+  });
+ });
+});
+
 //-----------------------------PUT METHOD--------------------------------------
 
 router.put( '/edit' , ( req , res ) =>
@@ -68,5 +92,26 @@ router.put( '/edit' , ( req , res ) =>
     }
   } ) ;
 } );
+
+//----------------------------POST REQUEST PITURE UPDATE-------------------------
+router.post( '/avatar' , ( req , res ) =>
+{
+ req.getConnection( ( error , connection ) =>
+ {
+  if (!error)
+  {
+   connection.query( 'Update User set user_pic = ? where user_id = ?' , [ req.body.avatar , req.cookies.user_info ] , ( err , resu ) => 
+   {
+    res.status(200).json( JSON.stringify( resu[0] ) ) ;
+    logger.info("adding a picture for user "+ req.cookies.user_info );
+   } );
+  }
+  else
+  {
+   res.status(401).json( JSON.stringify( error.message ) );
+  }
+ } );
+} ) ;
+
 
 module.exports = router ;
