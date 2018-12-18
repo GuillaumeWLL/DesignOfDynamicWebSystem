@@ -21,17 +21,11 @@ export class RegisterService {
       .post(`${environment.api_url}/signin`, {username, email, password, level}  )
       .subscribe(
         () => {
-          console.log('Ca fonctionne !! ');
+          console.log('User registered!! ');
         },
         (error) => {
-          console.log('ca marche pas');
+          console.log('something went wrong');
         }
       );
-
-    console.log('ok ca passe la');
-    console.log( username );
-    console.log( email );
-    console.log( password );
-    console.log( level );
   }
 }

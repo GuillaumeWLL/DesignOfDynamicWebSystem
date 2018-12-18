@@ -9,15 +9,17 @@ import {User} from '../models/user.model';
 })
 export class ProfileComponent implements OnInit {
 
-  user: any;
+  user ={"user_id": 0, "user_name": "", "user_mail": "", "user_password": "", "user_level": 0, "user_status": 1, "user_progression": "", "user_pic":""};
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    this.apiService.getUser().then( (response) => {
+        console.log(response);
+        this.user = response;
+      }
+    );
+  }
 
   ngOnInit() {
-    this.apiService.getUser().then( (response) => {
-     console.log(response);
-     this.user = response;
-     }
-   );
+
   }
 }

@@ -2,11 +2,14 @@
   <mat-card class="basic-card">`
     <form class="form-horizontal" [formGroup]="userForm">
     <mat-form-field>
-     <input matInput placeholder="Enter your email" formControlName="email" required>
+     <input matInput type="text" placeholder="Enter your email" formControlName="email" required>
+      <mat-error *ngIf="userForm.get('email').errors.required">Email required</mat-error>
+      <mat-error *ngIf="userForm.get('email').errors.email">This is not an email</mat-error>
     </mat-form-field>
     <p> </p>
     <mat-form-field>
       <input matInput placeholder="Username" formControlName="username" required>
+      <mat-error *ngIf="userForm.get('username').errors.required">Username required</mat-error>
     </mat-form-field>
     <p></p>
     <mat-form-field>
@@ -16,6 +19,8 @@
                       pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
                       formControlName="password" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="userForm.get('password').errors.required">Password required</mat-error>
+      <mat-error *ngIf="userForm.get('password').errors.pattern">Must contain at least 8 chars, a capital letter, a number, a special char</mat-error>
     </mat-form-field>
     <p> </p>
     <mat-form-field>
@@ -24,6 +29,7 @@
              [type]="hide ? 'password' : 'text'"
              formControlName="confirmPassword" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="userForm.get('confirmPassword').errors.required">You must confirm the password</mat-error>
     </mat-form-field>
     <p></p>
       <mat-form-field>

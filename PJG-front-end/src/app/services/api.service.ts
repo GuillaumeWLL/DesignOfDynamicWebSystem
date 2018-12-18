@@ -26,6 +26,20 @@ export class ApiService {
     });
   }
 
+  getUserProgression(){
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.get(`${environment.api_url}/myAccount/progression`)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            resolve(response);
+          },
+          (error) => {
+            console.log('error while retrieving progression data');
+          }
+        );
+    });
+  }
   updateProfile(username: string,
          email: string,
          password: string, level: number) {
@@ -34,10 +48,10 @@ export class ApiService {
       .put(`${environment.api_url}/myAccount/edit`, {username, email, password, level}  )
       .subscribe(
         () => {
-          console.log('Ca fonctionne !! ');
+          console.log('Profile updated');
         },
         (error) => {
-          console.log('ca marche pas');
+          console.log('Error while updating profile');
         }
       );
 
@@ -45,5 +59,17 @@ export class ApiService {
     console.log( username );
     console.log( email );
     console.log( password );
+  }
+
+  updateAvatar(avatar: FormData){
+    this.httpClient.post(`${environment.api_url}/myAccount/avatar`, {avatar})
+      .subscribe(
+            () => {
+              console.log('Profile updated');
+            },
+            (error) => {
+              console.log('Error while updating profile');
+            }
+          );
   }
 }

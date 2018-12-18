@@ -33,13 +33,14 @@ export class UserNewComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group( {
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      confirmPassword: [''],
-      modeControl: ['', [Validators.required]]
+      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl(''),
+      modeControl: new FormControl('', [Validators.required])
       }, {validator: this.checkPasswords }
     );
+
   }
   getRules() {
     const selectMode = this.userForm.value['modeControl'];
@@ -51,7 +52,10 @@ export class UserNewComponent implements OnInit {
 
     return pass === confirmPass ? null : { notSame: true };
   }
+
   onSignIn() {
+    console.log(this.userForm.get('email'));
+    console.log(this.userForm);
     const formValue = this.userForm.value;
     this.registerService.signIn(
       formValue['username'],

@@ -18,7 +18,7 @@ export class EditProfileComponent implements OnInit {
 
   userForm: FormGroup;
   selectedMode: number;
-  user: any;
+  user ={"user_id": 0, "user_name": "", "user_mail": "", "user_password": "", "user_level": 1, "user_status": 1, "user_progression": ""};
 
   modes: Mode[] = [
     {value: 1, viewValue: 'Zen'},
@@ -29,13 +29,14 @@ export class EditProfileComponent implements OnInit {
   changePassword: boolean;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
-    this.selectedMode = this.user.user_level;
-  }
-
-  ngOnInit() {
     this.apiService.getUser().then( (response) => {
       this.user = response;
     });
+
+  }
+
+  ngOnInit() {
+
     this.userForm = this.formBuilder.group( {
         email: ['', [Validators.email]],
         username: ['', []],
@@ -45,6 +46,7 @@ export class EditProfileComponent implements OnInit {
       }, {validator: this.checkPasswords }
     );
     this.changePassword = false;
+    this.selectedMode = this.user.user_level;
   }
 
   getCurrUserInfos(): any {

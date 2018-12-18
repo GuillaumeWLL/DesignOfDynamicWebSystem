@@ -5,11 +5,8 @@
   </mat-drawer>
   <mat-drawer-content class="drawer-content">
       <h2>My progression</h2>
-    <p> </p>
-    <p> </p>
-    <br>
-    <p> </p>
-    <p>Will be implemented in another version...</p>
+    <mat-progress-bar mode="determinate" [value]="percentage"></mat-progress-bar>
+    <p>Progression : {{percentage}} %</p>
     <br>
   </mat-drawer-content>
 </mat-drawer-container>
