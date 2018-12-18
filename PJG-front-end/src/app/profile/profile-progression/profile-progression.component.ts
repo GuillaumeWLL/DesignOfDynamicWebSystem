@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-profile-progression',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileProgressionComponent implements OnInit {
 
-  constructor() { }
+
+  value = 0;
+  percentage: any;
+
+  constructor(private apiService: ApiService) {
+    this.apiService.getUserProgression().then( (response) => {
+      this.value = response;
+    });
+    this.percentage = Math.round(this.value * 100).toFixed(2);
+
+  }
 
   ngOnInit() {
   }

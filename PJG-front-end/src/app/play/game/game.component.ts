@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CONTROLS, COLORS, BOARD_SIZE, GAME_MODES } from './game.constants' ;
 import { GameService } from '../../services/game.service';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-game',
@@ -33,13 +34,14 @@ export class GameComponent {
     ]
   };
 
-  private fruit = {
+  private objective = {
     x: -1,
     y: -1
   };
 
   constructor(private gameService: GameService) {
     this.setBoard();
+    this.resetFruit();
   }
 //tab[0] on prend le prend le dernier element et on shift pour le supprimer
 //  handleKeyboardEvents( e: KeyboardEvent){
@@ -58,9 +60,15 @@ export class GameComponent {
   }
 
   setColors(col: number , row: number): string{
+<<<<<<< HEAD
    /* if(this.isGameOver){
       return COLORS.GAME_OVER;
     } else*/ if (this.fruit.x === row && this.fruit.y === col){
+=======
+    /* if(this.isGameOver){
+       return COLORS.GAME_OVER;
+     } else*/ if (this.objective.x === row && this.objective.y === col){
+>>>>>>> Front-End
       return COLORS.FRUIT;
     }else if (this.snake.parts[0].x === row && this.snake.parts[0].y === col){
       return COLORS.HEAD;
@@ -82,16 +90,19 @@ export class GameComponent {
       this.noWallsTransition(newHead);
     }else if(this.default_mode === 'obstacles'){
       this.noWallsTransition(newHead);*/
-    if(this.obstacleCollision(newHead)){
-      return this.gameOver();
+    //if(this.obstacleCollision(newHead)){
+      //return this.gameOver();
+    //}
+    if (this.objectiveCollision(newHead)){
+      console.log('won !!!');
     }
 //  }
 
     if(this.selfCollision(newHead)){
       return this.gameOver();
-    } /*else if (this.fruitCollision(newHead)){
+    } else if (this.fruitCollision(newHead)){
     this.eatFruit();
-  }*/
+  }
 
     let oldTail = this.snake.parts[0];
     this.board[oldTail.y][oldTail.x] = false;
@@ -114,7 +125,7 @@ export class GameComponent {
     let newHead = Object.assign({}, this.snake.parts[0]);
     this.movement(this.tabMouv);
     if(this.tempDirection === CONTROLS.LEFT){
-      newHead.x-=1;
+      newHead.x -= 1;
     }else if(this.tempDirection === CONTROLS.RIGHT){
       newHead.x += 1;
     } else if (this.tempDirection === CONTROLS.UP){
@@ -140,30 +151,49 @@ export class GameComponent {
   }*/
 
 
-  addObstacles(): void {
-    let x = this.randomNumber();
-    let y = this.randomNumber();
-    if(this.board[y][x] === true || y === 8){
-      return this.addObstacles();
-    }
-    this.obstacles.push({
+  addObjective(): void {
+    //let x = this.randomNumber();
+    //let y = this.randomNumber();
+    let x = 6;
+    let y = 7;
+    this.board[x][y] = true;
+    //if(this.board[y][x] === true || y === 8) {
+      //return this.addObjective();
+    //}
+    /*this.objective.push({
       x: x,
       y: y
-    });
+    });*/
   }
 
   checkObstacles(x, y): boolean {
     let res = false;
-    this.obstacles.forEach((val)=>{
-      if(val.x === x && val.y === y){
+    /*this.objective.forEach((val) => {
+      if(val.x === x && val.y === y) {
         res = true;
       }
-    });
+    });*/
+    return res;
+  }
+  checkObjective(x, y): boolean {
+    let res = false;
+    /*this.objective.forEach((val) => {
+      if(val.x === x && val.y === y) {
+        res = true;
+      }
+    });*/
     return res;
   }
 
   obstacleCollision(part: any):boolean{
+    console.log('réussi !!!');
     return this.checkObstacles(part.x, part.y);
+  }
+  objectiveCollision(part: any):boolean{
+   // console.log('réussi !!!');
+    console.log(this.checkObjective(part.x, part.y));
+    return this.checkObjective(part.x, part.y);
+
   }
   boardCollision(part: any):boolean{
     return part.x === BOARD_SIZE || part.x === -1 || part.y === BOARD_SIZE || part.y === -1;
@@ -173,8 +203,8 @@ export class GameComponent {
     return this.board[part.y][part.x] === true;
   }
 
-  /*fruitCollision(part: any):boolean{
-    return part.x === this.fruit.x && part.y === this.fruit.y;
+  fruitCollision(part: any):boolean{
+    return part.x === this.objective.x && part.y === this.objective.y;
   }
 
   resetFruit(): void {
@@ -185,22 +215,18 @@ export class GameComponent {
       return this.resetFruit();
     }
 
-    this.fruit = {
+    this.objective = {
       x: x,
       y: y
     };
   }
 
   eatFruit(): void {
-    this.score++;
-    let tail = Object.assign({}, this.snake.parts[this.snake.parts.length -1]);
-    this.snake.parts.push(tail);
-    this.resetFruit();
-    if(this.score%5 === 0){
-      this.interval -= 15;
-    }
+    alert('You won this level !');
+    this.setBoard();
   }
 
+<<<<<<< HEAD
 */  gameOver(): void {
    /* this.isGameOver = true;
     this.gameStarted = false;
@@ -215,12 +241,28 @@ export class GameComponent {
     }, 500);
     this.setBoard();
  */ }
+=======
+  gameOver(): void {
+    /* this.isGameOver = true;
+     this.gameStarted = false;
+     let me = this;
+     if(this.score > this.best_score){
+       this.best_score = this.score ;
+       this.newBestScore = true;
+     }
+
+     setTimeout(() => {
+       me.isGameOver = false;
+     }, 500);
+     this.setBoard();
+  */ }
+>>>>>>> Front-End
 
   randomNumber(): any{
     return Math.floor(Math.random() * BOARD_SIZE);
   }
 
-  setBoard(): void{
+  setBoard(): void {
     this.board = [];
     for(let i = 0 ; i < BOARD_SIZE; i++){
       this.board[i] = [];
@@ -228,36 +270,59 @@ export class GameComponent {
         this.board[i][j] = false;
       }
     }
+    //this.board[this.snake.parts[0].x][this.snake.parts[0].y] = false;
+
+
+   // this.board[6][7] = true;
   }
 
   showMenu() : void{
     this.showMenuChecker = !this.showMenuChecker;
   }
 
-  newGame(/*mode: string*/): void{
+  reset() {
     this.setBoard();
-    this.tabMouv = this.gameService.instructions;    //['left', 'left', 'left', 'up','up','up','up', 'right', 'down']; // Ici pour set instructions du tableau
-    this.tabMouv.unshift(this.tabMouv[0]);
-    this.default_mode =/* mode || */'classic' ;
-    this.newBestScore = false;
-    this.score = 0 ;
-    this.tempDirection;
     this.interval = 500;
     this.snake = {
       direction: CONTROLS.LEFT,
-      parts: []
+      parts: [ {x: 8, y:8}
+      ]
     };
-    for(let i = 0; i < 3 ; i++){
-      this.snake.parts.push({x: 8+1 , y:8});
-    }
-    /*if(mode === 'obstacles'){
+  }
+  newGame(/*mode: string*/): void{
+    this.setBoard();
+    this.tabMouv = [];
+    this.tabMouv = this.gameService.instructions;    //['left', 'left', 'left', 'up','up','up','up', 'right', 'down']; // Ici pour set instructions du tableau
+<<<<<<< HEAD
+    this.tabMouv.unshift(this.tabMouv[0]);
+=======
+    console.log(this.tabMouv);
+    //this.tabMouv.unshift(this.tabMouv[0]);
+>>>>>>> Front-End
+    this.default_mode =/* mode || */'classic' ;
+    //this.newBestScore = false;
+    //this.score = 0 ;
+    //this.tempDirection;
+    this.interval = 500;
+    this.snake = {
+      direction: CONTROLS.LEFT,
+      parts: [ {x: 8, y:8}
+      ]
+    };
+    console.log('1');
+    console.log(this.snake);
+    //this.snake.parts.push({x: 8 , y: 8});
+    /*for(let i = 0; i < 3 ; i++){
+      this.snake.parts.push({x: 8 , y:8});
+    }*/
+      /*if(mode === 'obstacles'){
       this.obstacles = [] ;
       let j = 1 ;
       do {
         this.addObstacles();
       }while(j++<9);
-    }
-    //this.resetFruit();*/
+    }*/
+
     this.updatePositions();
   }
 }//end of app

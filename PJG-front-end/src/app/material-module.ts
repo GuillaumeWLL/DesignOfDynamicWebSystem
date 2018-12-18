@@ -39,6 +39,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MatDialog,
 } from '@angular/material';
 
 @NgModule({

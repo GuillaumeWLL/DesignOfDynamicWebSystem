@@ -38,14 +38,16 @@ import { GameComponent } from './play/game/game.component';
 import { MaterialModule } from './material-module';
 import { GameService } from './services/game.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 const appRoutes: Routes = [
   { path: 'auth', component: UserLoginComponent},
   { path: 'new-user', component: UserNewComponent},
-  { path: 'play', canActivate: [AuthGuard], component: PlayComponent},
-  { path: 'profile/progression', canActivate: [AuthGuard], component: ProfileProgressionComponent},
-  { path: 'profile/edit', canActivate: [AuthGuard], component: EditProfileComponent},
-  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
+  { path: 'play'/*, canActivate: [AuthGuard]*/, component: PlayComponent},
+  { path: 'profile/progression'/*, canActivate: [AuthGuard]*/, component: ProfileProgressionComponent},
+  { path: 'profile/edit'/*, canActivate: [AuthGuard]*/, component: EditProfileComponent},
+  { path: 'profile' /*, canActivate: [AuthGuard]*/, component: ProfileComponent},
   { path: 'home', component: HomeComponent},
   //{ path: '**', redirectTo: '/not-found'}
   ];
@@ -65,7 +67,8 @@ const appRoutes: Routes = [
     FooterComponent,
     SidebarComponent,
     DragDropComponent,
-    GameComponent
+    GameComponent,
+    ProfilePictureComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ const appRoutes: Routes = [
     MatStepperModule,
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFileUploadModule
   ],
   providers: [
     AuthGuard,
